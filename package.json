@@ -2,8 +2,9 @@
   "name": "slinkter",
   "version": "0.1.0",
   "private": true,
-  "homepage":"http://slinkter.github.io",
+  "homepage": "http://slinkter.github.io",
   "dependencies": {
+    "@material-tailwind/react": "^2.1.8",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -17,8 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build" ,
-    "deploy":"gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +40,9 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "autoprefixer": "^10.4.16",
+    "gh-pages": "^4.0.0",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.0"
   }
 }
