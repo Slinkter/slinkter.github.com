@@ -1,78 +1,47 @@
-import React, { useReducer, useState } from "react";
-import { log } from "xstate";
-import { update } from "xstate/lib/actionTypes";
+import React, { useReducer } from "react";
+import { act } from "react-dom/test-utils";
+import { log } from "xstate/lib/actions";
 
 const types = {
-  add: "add",
-  update: "update",
-  delete: "delete",
+  show: "SHOW",
+  addToCart: "ADDTOCART",
+  removeFromCart: "REMOVEFROMCART",
+  removeOneFromCart: "REMOVEONEFROMCART",
 };
-
-const initialState = [{ id: 1, title: "todo #1" }];
-
 const reducer = (state, action) => {
   switch (action.type) {
-    case types.add:
-      return [...state, action.payload];
-    case types.update:
-      return state.map((item) =>
-        item.id === action.payload.id ? action.payload : item
-      );
-    case types.delete:
-      return state.filter((item) => item.id !== action.payload.id);
+    case types.show:
+      return state;
+    case types.addToCart:
+      return state;
+    case types.removeFromCart:
+      return state;
+    case types.removeOneFromCart:
+      return state;
     default:
       return state;
   }
 };
+const initialState = {
+  list: [
+    { id: 1, title: "product #1" },
+    { id: 2, title: "product #2" },
+    { id: 3, title: "product #3" },
+    { id: 4, title: "product #4" },
+    { id: 5, title: "product #5" },
+    { id: 6, title: "product #6" },
+    { id: 7, title: "product #7" },
+  ],
+  cart: [],
+  activeProduct: {},
+};
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [text, setText] = useState("");
-
-  const onAdd = (e) => {
-    e.preventDefault();
-    if (!text) {
-      alert("texto vacio");
-      return;
-    }
-    const newTodo = { id: Date.now(), title: text };
-    dispatch({ type: types.add, payload: newTodo });
-    setText("");
-  };
-  const onUpdate = (todo) => {
-    if (!text) {
-      alert("texto vacio");
-      return;
-    }
-    const updateTodo = { ...todo, title: text };
-    dispatch({ type: types.update, payload: updateTodo });
-  };
-  const onDelete = (todo) => {
-    dispatch({ type: types.delete, payload: todo });
-  };
-
-  return (
-    <>
-      <form onSubmit={(e) => onAdd(e)}>
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button type="submit">add</button>
-      </form>
-
-      <ul>
-        {state.map((todo) => (
-          <li key={todo.id}>
-            {todo.title}
-            <button onClick={() => onDelete(todo)}>delete</button>
-            <button onClick={() => onUpdate(todo)}>update</button>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+  const { list, cart, activeProduct } = state;
+  console.log(state);
+  l;
+  return <div>App</div>;
 };
 
 export default App;
