@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.jsx
+import { useContext } from "react";
+import { Button } from "@material-tailwind/react";
+import CustomThemeContext from "./CustomThemeContext";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const { theme, toggleTheme } = useContext(CustomThemeContext);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    return (
+        <div
+            className={`min-h-screen ${
+                theme === "dark" ? "bg-gray-900" : "bg-white"
+            } flex justify-center items-center`}
+        >
+            <div className="text-center">
+                <h1
+                    className={`text-4xl ${
+                        theme === "dark" ? "text-white" : "text-black"
+                    }`}
+                >
+                    {theme === "dark" ? "Dark Mode" : "Light Mode"}
+                </h1>
+                <Button
+                    color={theme === "dark" ? "blue" : "amber"}
+                    onClick={toggleTheme}
+                    className="mt-4"
+                >
+                    Toggle Theme
+                </Button>
+            </div>
+        </div>
+    );
+};
 
-export default App
+export default App;
