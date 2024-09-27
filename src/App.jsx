@@ -40,7 +40,7 @@ function App() {
         },
         {
             name: "Project 06 ",
-            image: url + "/src/assets/api07.png",
+            image: url + "/src/assets/api06.png",
             link: "https://slinkter.github.io/myprojectapi06/",
         },
         {
@@ -78,16 +78,23 @@ function App() {
     return (
         <div className="App">
             {/* Sección de Información Personal */}
-            <section className="min-h-screen flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900">
-                <h1 className="text-5xl font-bold text-gray-800 dark:text-gray-100">
-                    Luis jhonata Cueva R.
-                </h1>
-                <ContactLinks />
+            <section className="min-h-screen flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 relative">
+                <div className="container-md mx-auto text-center p-8 relative">
+                    <h1 className="text-5xl font-bold text-gray-800 dark:text-gray-100 text-center ">
+                        Luis Jhonata Cueva R.
+                    </h1>
+                    <ContactLinks />
 
-                {/* Botón para cambiar el tema */}
+                    <h2 className="text-3xl font-semibold dark:text-white mb-10">
+                        Habilidades
+                    </h2>
+                    <Skills />
+
+                    {/* Botón para cambiar el tema */}
+                </div>
                 <button
                     onClick={toggleTheme}
-                    className="mt-4 p-2 bg-gray-300 dark:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-full"
+                    className="mt-4 p-2 bg-gray-300 dark:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-full absolute bottom-10  "
                 >
                     {theme === "dark" ? (
                         <FaSun size={24} />
@@ -98,28 +105,41 @@ function App() {
             </section>
 
             {/* Sección de Proyectos */}
-            <section className="min-h-screen bg-white dark:bg-gray-800 py-12">
-                <h2 className="text-3xl font-semibold text-center mb-10 dark:text-white">
-                    Mis Proyectos
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10">
-                    {db_projectbasics.map((item, index) => (
-                        <ProjectCard
-                            key={index}
-                            projectName={`Proyecto ${index + 1}`}
-                            projectImage={item.image}
-                            projectLink={item.link}
-                        />
-                    ))}
+            <section className="min-h-screen bg-white dark:bg-gray-800 py-12 ">
+                <div className="container mx-auto">
+                    <h2 className="text-3xl font-semibold text-center mb-10 dark:text-white">
+                        Mis Trabajos
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10">
+                        {db_projectbasics.map((item, index) => (
+                            <ProjectCard
+                                key={index}
+                                projectName={`Proyecto ${index + 1}`}
+                                projectImage={item.image}
+                                projectLink={item.link}
+                            />
+                        ))}
+                    </div>
                 </div>
             </section>
 
             {/* Sección de Habilidades */}
             <section className="min-h-screen flex flex-col items-center bg-gray-200 dark:bg-gray-700 py-12">
-                <h2 className="text-3xl font-semibold dark:text-white mb-10">
-                    Habilidades y Tecnologías
-                </h2>
-                <Skills />
+                <div className="container mx-auto">
+                    <h2 className="text-3xl font-semibold text-center mb-10 dark:text-white">
+                        Mis Proyectos
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10">
+                        {db_projectbasics.map((item, index) => (
+                            <ProjectCard
+                                key={index}
+                                projectName={`Proyecto ${index + 1}`}
+                                projectImage={item.image}
+                                projectLink={item.link}
+                            />
+                        ))}
+                    </div>
+                </div>
             </section>
         </div>
     );

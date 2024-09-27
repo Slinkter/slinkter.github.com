@@ -2,7 +2,7 @@ import { FaFacebook, FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 
 const ContactLinks = () => {
     return (
-        <div className="flex space-x-6 mt-4">
+        <div className="flex justify-center space-x-6 m-4 ">
             <a
                 href="https://www.linkedin.com/in/luis-jhonatan-cueva-rojas-88b61266/"
                 target="_blank"
