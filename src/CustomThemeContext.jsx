@@ -1,34 +1,24 @@
-// CustomThemeContext.js
 import { createContext, useEffect, useState } from "react";
 
-const CustomThemeContext = createContext();
+export const CustomThemeContext = createContext();
 
 export const CustomThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light"
+        localStorage.getItem("theme") || "light"
     );
 
-    const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-    };
-
     useEffect(() => {
-        const systemThemeChangeListener = (e) => {
-            setTheme(e.matches ? "dark" : "light");
-        };
-        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-        mediaQuery.addEventListener("change", systemThemeChangeListener);
-
-        return () => {
-            mediaQuery.removeEventListener("change", systemThemeChangeListener);
-        };
-    }, []);
-
-    useEffect(() => {
-        document.documentElement.className = theme;
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+        localStorage.setItem("theme", theme); // Almacena el tema en localStorage
     }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(theme === "light" ? "dark" : "light");
+    };
 
     return (
         <CustomThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -36,5 +26,3 @@ export const CustomThemeProvider = ({ children }) => {
         </CustomThemeContext.Provider>
     );
 };
-
-export default CustomThemeContext;

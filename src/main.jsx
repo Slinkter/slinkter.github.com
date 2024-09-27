@@ -8,11 +8,7 @@ import { CustomThemeProvider } from "./CustomThemeContext.jsx";
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <ThemeProvider>
-            {" "}
-            {/* Material Tailwind ThemeProvider */}
             <CustomThemeProvider>
-                {" "}
-                {/* Tu propio ThemeProvider */}
                 <App />
             </CustomThemeProvider>
         </ThemeProvider>
