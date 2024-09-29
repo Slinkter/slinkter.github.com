@@ -78,19 +78,34 @@ function App() {
     const db_projectworks = [
         {
             name: "Work 01 ",
-            image: "/src/assets/works/wk01.png",
+            image: url + "/src/assets/works/wk01.png",
         },
         {
             name: "Work 02 ",
-            image: "/src/assets/works/wk02.png",
+            image: url + "/src/assets/works/wk02.png",
         },
         {
             name: "Work 03 ",
-            image: "/src/assets/works/wk03.png",
+            image: url + "/src/assets/works/wk03.png",
         },
         {
             name: "Work 04 ",
-            image: "/src/assets/works/wk04.png",
+            image: url + "/src/assets/works/wk04.png",
+        },
+    ];
+
+    const db_projectApps = [
+        {
+            name: "Work 01 ",
+            image: url + "/src/assets/works/wk01.png",
+        },
+        {
+            name: "Work 02 ",
+            image: url + "/src/assets/works/wk02.png",
+        },
+        {
+            name: "Work 03 ",
+            image: url + "/src/assets/works/wk03.png",
         },
     ];
 
