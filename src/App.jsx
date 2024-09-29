@@ -78,34 +78,30 @@ function App() {
     const db_projectworks = [
         {
             name: "Work 01 ",
-            image: url + "/src/assets/works/wk01.png",
+            image: url + "/src/assets/works/work01.png",
         },
         {
             name: "Work 02 ",
-            image: url + "/src/assets/works/wk02.png",
+            image: url + "/src/assets/works/work02.png",
         },
         {
             name: "Work 03 ",
-            image: url + "/src/assets/works/wk03.png",
-        },
-        {
-            name: "Work 04 ",
-            image: url + "/src/assets/works/wk04.png",
+            image: url + "/src/assets/works/work03.png",
         },
     ];
 
     const db_projectApps = [
         {
-            name: "Work 01 ",
-            image: url + "/src/assets/works/wk01.png",
+            name: "App 01 ",
+            image: url + "/src/assets/works/app01.png",
         },
         {
-            name: "Work 02 ",
-            image: url + "/src/assets/works/wk02.png",
+            name: "App 02 ",
+            image: url + "/src/assets/works/app02.png",
         },
         {
-            name: "Work 03 ",
-            image: url + "/src/assets/works/wk03.png",
+            name: "App 03 ",
+            image: url + "/src/assets/works/app03.png",
         },
     ];
 
@@ -163,7 +159,7 @@ function App() {
             </section>
 
             {/* Sección de Proyectos */}
-            <section className="min-h-screen bg-white dark:bg-gray-800 py-12 ">
+            <section className="min-h-screenlex flex-col items-center  bg-gray-200 dark:bg-gray-700 py-12  ">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-semibold text-center mb-10 dark:text-white">
                         Mis Trabajos
@@ -181,7 +177,25 @@ function App() {
                 </div>
             </section>
 
-            <section className="min-h-screen flex flex-col items-center bg-gray-200 dark:bg-gray-700 py-12">
+            <section className="min-h-screen flex flex-col   bg-gray-100 dark:bg-gray-900 py-12">
+                <div className="container mx-auto">
+                    <h2 className="text-3xl  mb-10  font-bold text-gray-800 dark:text-gray-100 text-center">
+                        Mis Apps
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10">
+                        {db_projectApps.map((item, index) => (
+                            <ProjectCard
+                                key={index}
+                                projectName={`Proyecto ${index + 1}`}
+                                projectImage={item.image}
+                                projectLink={item.link}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="min-h-screen flex-col items-center  bg-gray-200 dark:bg-gray-700 py-12  ">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-semibold text-center mb-10 dark:text-white">
                         Mis Proyectos
