@@ -5,7 +5,6 @@ import "./App.css";
 import { useContext } from "react";
 import { CustomThemeContext } from "./CustomThemeContext";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { Button } from "@material-tailwind/react";
 
 function App() {
     const { theme, toggleTheme } = useContext(CustomThemeContext);
@@ -73,6 +72,25 @@ function App() {
             name: "Project 12 ",
             image: url + "/src/assets/api12.png",
             link: "https://slinkter.github.io/myprojectapi12/",
+        },
+    ];
+
+    const db_projectworks = [
+        {
+            name: "Work 01 ",
+            image: "/src/assets/works/wk01.png",
+        },
+        {
+            name: "Work 02 ",
+            image: "/src/assets/works/wk02.png",
+        },
+        {
+            name: "Work 03 ",
+            image: "/src/assets/works/wk03.png",
+        },
+        {
+            name: "Work 04 ",
+            image: "/src/assets/works/wk04.png",
         },
     ];
 
@@ -148,14 +166,13 @@ function App() {
                 </div>
             </section>
 
-            {/* Sección de Habilidades */}
             <section className="min-h-screen flex flex-col items-center bg-gray-200 dark:bg-gray-700 py-12">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-semibold text-center mb-10 dark:text-white">
                         Mis Proyectos
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10">
-                        {db_projectbasics.map((item, index) => (
+                        {db_projectworks.map((item, index) => (
                             <ProjectCard
                                 key={index}
                                 projectName={`Proyecto ${index + 1}`}
