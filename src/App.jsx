@@ -7,6 +7,7 @@ import { CustomThemeContext } from "./CustomThemeContext";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 function App() {
+    window.document.title = "Slinkter - Luis J Cueva";
     const { theme, toggleTheme } = useContext(CustomThemeContext);
 
     const url =
@@ -79,14 +80,17 @@ function App() {
         {
             name: "Work 01 ",
             image: url + "/src/assets/works/work01.png",
+            link: "https://slinkter.github.io/webCentralDent/",
         },
         {
             name: "Work 02 ",
             image: url + "/src/assets/works/work02.png",
+            link: "https://slinkter.github.io/webARSI/",
         },
         {
             name: "Work 03 ",
             image: url + "/src/assets/works/work03.png",
+            link: "https://gyacompany.com/",
         },
     ];
 
@@ -94,14 +98,17 @@ function App() {
         {
             name: "App 01 ",
             image: url + "/src/assets/works/app01.png",
+            link: "https://slinkter.github.io/webARSI/arsiapp.html",
         },
         {
             name: "App 02 ",
             image: url + "/src/assets/works/app02.png",
+            link: "https://slinkter.github.io/webARSI/arsiunidades.html",
         },
         {
             name: "App 03 ",
             image: url + "/src/assets/works/app03.png",
+            link: "https://slinkter.github.io/webARSI/arsiut.html",
         },
     ];
 
@@ -157,15 +164,14 @@ function App() {
                     )}
                 </button>
             </section>
-
-            {/* Sección de Proyectos */}
-            <section className="min-h-screenlex flex-col items-center  bg-gray-200 dark:bg-gray-700 py-12  ">
+            {/*  */}
+            <section className="min-h-screen flex-col items-center  bg-gray-200 dark:bg-gray-700 py-12  ">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-semibold text-center mb-10 dark:text-white">
-                        Mis Trabajos
+                        Trabajos Realizados
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10">
-                        {db_projectbasics.map((item, index) => (
+                        {db_projectworks.map((item, index) => (
                             <ProjectCard
                                 key={index}
                                 projectName={`Proyecto ${index + 1}`}
@@ -176,11 +182,11 @@ function App() {
                     </div>
                 </div>
             </section>
-
+            {/*  */}
             <section className="min-h-screen flex flex-col   bg-gray-100 dark:bg-gray-900 py-12">
                 <div className="container mx-auto">
                     <h2 className="text-3xl  mb-10  font-bold text-gray-800 dark:text-gray-100 text-center">
-                        Mis Apps
+                        Proyectos Android
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10">
                         {db_projectApps.map((item, index) => (
@@ -195,13 +201,14 @@ function App() {
                 </div>
             </section>
 
-            <section className="min-h-screen flex-col items-center  bg-gray-200 dark:bg-gray-700 py-12  ">
+            {/*  */}
+            <section className="min-h-screenlex flex-col items-center  bg-gray-200 dark:bg-gray-700 py-12  ">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-semibold text-center mb-10 dark:text-white">
-                        Mis Proyectos
+                        Proyectos Web
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-10">
-                        {db_projectworks.map((item, index) => (
+                        {db_projectbasics.map((item, index) => (
                             <ProjectCard
                                 key={index}
                                 projectName={`Proyecto ${index + 1}`}
