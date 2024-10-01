@@ -117,22 +117,23 @@ function App() {
             {/* Sección de Información Personal */}
             <section className="min-h-screen flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 relative">
                 <div className="container-md mx-auto text-center p-8 relative">
-                    <h1 className="text-5xl font-bold text-gray-800 dark:text-gray-100 text-center ">
+                    <h1 className="text-5xl font-bold text-gray-800 dark:text-gray-100 text-center mb-10">
                         Luis Jhonata Cueva R.
                     </h1>
-                    <ContactLinks />
 
-                    <h2 className="text-3xl font-semibold dark:text-white mb-10">
+                    <h2 className="text-3xl  font-semibold text-gray-800 dark:text-white mb-5">
                         Habilidades
                     </h2>
+
                     <Skills />
 
                     {/* Botón para descargar el CV */}
 
+                    <ContactLinks />
                     <a
-                        href="/cv-luis-cueva.pdf"
+                        href="/CV_LuisCuevaR_2024_11.pdf"
                         download
-                        className="mt-12 p-3 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-700 transition duration-300 inline-flex items-center"
+                        className=" p-3 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-700 transition duration-300 inline-flex items-center"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +151,6 @@ function App() {
                         </svg>
                         Descargar CV
                     </a>
-
                     {/* Botón para cambiar el tema */}
                 </div>
                 <button
@@ -195,6 +195,7 @@ function App() {
                                 projectName={`Proyecto ${index + 1}`}
                                 projectImage={item.image}
                                 projectLink={item.link}
+                                isDarkBG={true}
                             />
                         ))}
                     </div>
