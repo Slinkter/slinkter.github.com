@@ -1,12 +1,15 @@
 const skills = [
-    "React",
+    "Java",
+    "Python",
+    "JavaScript",
+    "SQL",
+    "Git",
     "HTML",
     "CSS",
-    "JavaScript",
+
+    "React",
     "Firebase",
     "AWS",
-    "Python",
-    "Git",
 ];
 
 const Skills = () => {
