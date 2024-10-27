@@ -10,6 +10,10 @@ function App() {
     window.document.title = "Slinkter - Luis J Cueva";
     const { theme, toggleTheme } = useContext(CustomThemeContext);
 
+    /* 
+    https://github.com/Slinkter/myprojectapi07/blob/main/api07.png?raw=true
+    */
+
     const url =
         "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main";
 
@@ -46,7 +50,7 @@ function App() {
         },
         {
             name: "Project 07 ",
-            image: url + "/src/assets/api01.png",
+            image: url + "/src/assets/api07.png",
             link: "https://slinkter.github.io/myprojectapi07/",
         },
         {
@@ -75,6 +79,8 @@ function App() {
             link: "https://slinkter.github.io/myprojectapi12/",
         },
     ];
+
+    console.log(db_projectbasics);
 
     const db_projectworks = [
         {
