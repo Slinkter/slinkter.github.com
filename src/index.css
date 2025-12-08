@@ -1,3 +1,101 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* Layout & Containers */
+  .app {
+    @apply min-h-screen transition-colors duration-300;
+  }
+
+  .container-custom {
+    @apply container mx-auto px-4 md:px-8;
+  }
+
+  /* Hero Section */
+  .hero {
+    @apply min-h-screen flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 relative transition-colors duration-300;
+  }
+
+  .hero__content {
+    @apply container mx-auto text-center p-8 relative z-10;
+  }
+
+  .hero__title {
+    @apply text-5xl font-bold text-gray-800 dark:text-gray-100 text-center mb-10 transition-colors duration-300;
+  }
+
+  .hero__subtitle {
+    @apply text-3xl font-semibold text-gray-800 dark:text-white mb-5 transition-colors duration-300;
+  }
+
+  /* Resume Button */
+  .btn-download {
+    @apply p-3 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-700 transition duration-300 inline-flex items-center font-medium mt-4;
+  }
+
+  .btn-download__icon {
+    @apply h-5 w-5 mr-2;
+  }
+
+  /* Theme Toggle */
+  .theme-toggle {
+    @apply mt-4 p-3 bg-gray-300 dark:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-full absolute bottom-10 hover:scale-110 transition-transform duration-200 z-20;
+  }
+
+  /* Sections */
+  .section {
+    @apply min-h-screen py-12 flex flex-col items-center transition-colors duration-300;
+  }
+
+  .section--gray {
+    @apply bg-gray-200 dark:bg-gray-700;
+  }
+
+  .section--dark {
+    @apply bg-gray-100 dark:bg-gray-900;
+  }
+
+  .section__title {
+    @apply text-3xl font-semibold text-center mb-10 text-gray-800 dark:text-white transition-colors duration-300;
+  }
+
+  .section__grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 w-full container mx-auto;
+  }
+
+  /* Project Cards */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 h-full flex flex-col;
+  }
+
+  .card__header {
+    @apply w-full h-48 overflow-hidden;
+  }
+
+  .card__image {
+    @apply w-full h-full object-cover transition-transform duration-500 hover:scale-110;
+  }
+
+  /* Skills Component */
+  .skills-grid {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 w-full max-w-2xl;
+  }
+
+  .skill-card {
+    @apply bg-white dark:bg-gray-800 shadow-sm rounded-lg p-3 hover:shadow-md transition-shadow duration-300 flex justify-center items-center border border-gray-100 dark:border-gray-700;
+  }
+
+  .skill-text {
+    @apply font-semibold text-gray-700 dark:text-gray-200 text-sm md:text-base;
+  }
+
+  /* Contact Links Component */
+  .contact-links {
+    @apply flex justify-center items-center gap-6 my-6;
+  }
+
+  .contact-link {
+    @apply hover:scale-125 transition-transform duration-200;
+  }
+}
