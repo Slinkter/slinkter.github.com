@@ -1,4 +1,12 @@
-import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaTwitter,
+  FaYoutube,
+  FaFacebook,
+  FaTwitch,
+} from "react-icons/fa";
+import { SiKick } from "react-icons/si";
 
 const ContactLinks = () => {
   return (
@@ -29,6 +37,42 @@ const ContactLinks = () => {
         aria-label="Twitter (X)"
       >
         <FaTwitter className="text-blue-400" size={30} />
+      </a>
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+        aria-label="YouTube"
+      >
+        <FaYoutube className="text-red-600" size={30} />
+      </a>
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+        aria-label="Facebook"
+      >
+        <FaFacebook className="text-blue-600" size={30} />
+      </a>
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+        aria-label="Twitch"
+      >
+        <FaTwitch className="text-purple-600" size={30} />
+      </a>
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+        aria-label="Kick"
+      >
+        <SiKick className="text-green-500" size={30} />
       </a>
     </div>
   );

@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+
 /* 
     Component: Section
     Description: Reusable section component for displaying a grid of items (projects, works, etc).

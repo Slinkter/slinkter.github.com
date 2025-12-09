@@ -1,0 +1,30 @@
+
+> vite-project@0.0.0 build C:\Users\luisj\Documents\slinkter.github.com
+> vite build
+
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 864 modules transformed.
+[31mx[39m Build failed in 2.98s
+[31merror during build:
+[31msrc/data/skills.js (13:21): "SiPmi" is not exported by "node_modules/.pnpm/react-icons@5.5.0_react@18.3.1/node_modules/react-icons/si/index.mjs", imported by "src/data/skills.js".[31m
+file: [36mC:/Users/luisj/Documents/slinkter.github.com/src/data/skills.js:13:21[31m
+[33m
+11:   FaAndroid,
+12: } from "react-icons/fa";
+13: import { SiFirebase, SiPmi } from "react-icons/si";
+                         ^
+14: 
+15: /* 
+[31m
+    at getRollupError (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:16956:16)
+    at Module.traceVariable (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:17412:29)
+    at ModuleScope.findVariable (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:15076:39)
+    at Identifier.bind (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:5423:40)
+    at Property.bind (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:2813:23)
+    at ObjectExpression.bind (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:2809:28)
+    at ArrayExpression.bind (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:2809:28)
+    at VariableDeclarator.bind (file:///C:/Users/luisj/Documents/slinkter.github.com/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:2813:23)[39m
+ ELIFECYCLE  Command failed with exit code 1.

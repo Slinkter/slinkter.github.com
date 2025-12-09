@@ -3,99 +3,119 @@
 @tailwind utilities;
 
 @layer components {
-  /* Layout & Containers */
+  /* Layout & Base */
   .app {
-    @apply min-h-screen transition-colors duration-300;
+    @apply min-h-screen transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans selection:bg-blue-500 selection:text-white;
   }
 
   .container-custom {
-    @apply container mx-auto px-4 md:px-8;
+    @apply container mx-auto px-4 md:px-8 max-w-7xl;
+  }
+
+  /* Glassmorphism Utility */
+  .glass {
+    @apply bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50;
+  }
+
+  /* Navbar */
+  .navbar {
+    @apply fixed top-0 w-full z-50 transition-all duration-300 h-16 flex items-center;
+  }
+
+  .nav-link {
+    @apply text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors cursor-pointer;
   }
 
   /* Hero Section */
   .hero {
-    @apply min-h-screen flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 relative transition-colors duration-300;
+    @apply min-h-[90vh] flex flex-col justify-center items-center pt-20 relative overflow-hidden;
   }
 
   .hero__content {
-    @apply container mx-auto text-center p-8 relative z-10;
+    @apply container mx-auto text-center px-4 relative z-10 flex flex-col items-center;
   }
 
   .hero__title {
-    @apply text-5xl font-bold text-gray-800 dark:text-gray-100 text-center mb-10 transition-colors duration-300;
+    @apply text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-6 tracking-tight;
   }
 
   .hero__subtitle {
-    @apply text-3xl font-semibold text-gray-800 dark:text-white mb-5 transition-colors duration-300;
+    @apply text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl leading-relaxed;
   }
 
-  /* Resume Button */
-  .btn-download {
-    @apply p-3 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-700 transition duration-300 inline-flex items-center font-medium mt-4;
+  /* Buttons */
+  .btn-primary {
+    @apply px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2;
   }
 
-  .btn-download__icon {
-    @apply h-5 w-5 mr-2;
+  .btn-secondary {
+    @apply px-8 py-3 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-800 dark:text-white rounded-full font-bold transition-all hover:scale-105 active:scale-95 border border-gray-300 dark:border-gray-700 flex items-center justify-center gap-2;
   }
 
-  /* Theme Toggle */
-  .theme-toggle {
-    @apply mt-4 p-3 bg-gray-300 dark:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-full absolute bottom-10 hover:scale-110 transition-transform duration-200 z-20;
-  }
-
-  /* Sections */
+  /* Section Styling */
   .section {
-    @apply min-h-screen py-12 flex flex-col items-center transition-colors duration-300;
+    @apply py-20 w-full;
   }
 
   .section--gray {
-    @apply bg-gray-200 dark:bg-gray-700;
+    @apply bg-gray-50 dark:bg-gray-800/50;
   }
 
   .section--dark {
-    @apply bg-gray-100 dark:bg-gray-900;
+    @apply bg-white dark:bg-gray-900;
   }
 
   .section__title {
-    @apply text-3xl font-semibold text-center mb-10 text-gray-800 dark:text-white transition-colors duration-300;
+    @apply text-3xl font-bold text-center mb-16 relative inline-block w-full;
   }
 
+  .section__title::after {
+    content: "";
+    @apply block w-20 h-1 bg-blue-500 mx-auto mt-4 rounded-full;
+  }
+
+  /* 
+     Grid Layout 
+     Mobile: 1 column
+     Tablet (md): 2 columns
+     Desktop (lg): 3 columns
+  */
   .section__grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 w-full container mx-auto;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 container mx-auto;
   }
 
-  /* Project Cards */
+  /* Cards */
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 h-full flex flex-col;
+    @apply bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col h-full;
   }
 
-  .card__header {
-    @apply w-full h-48 overflow-hidden;
+  .card__image-container {
+    @apply w-full h-48 overflow-hidden relative;
   }
 
   .card__image {
-    @apply w-full h-full object-cover transition-transform duration-500 hover:scale-110;
+    @apply w-full h-full object-cover transition-transform duration-500 group-hover:scale-110;
   }
 
-  /* Skills Component */
-  .skills-grid {
-    @apply grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 w-full max-w-2xl;
+  /* Tags */
+  .tag {
+    @apply text-xs font-semibold px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 border border-blue-100 dark:border-blue-800;
+  }
+
+  /* Skills */
+  .skills-section {
+    @apply py-16 bg-white dark:bg-gray-900;
   }
 
   .skill-card {
-    @apply bg-white dark:bg-gray-800 shadow-sm rounded-lg p-3 hover:shadow-md transition-shadow duration-300 flex justify-center items-center border border-gray-100 dark:border-gray-700;
+    @apply flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-white dark:hover:bg-gray-700 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 cursor-default;
   }
 
-  .skill-text {
-    @apply font-semibold text-gray-700 dark:text-gray-200 text-sm md:text-base;
+  .skill-icon {
+    @apply text-4xl mb-3 text-gray-700 dark:text-gray-300 transition-colors duration-300;
   }
 
-  /* Contact Links Component */
-  .contact-links {
-    @apply flex justify-center items-center gap-6 my-6;
-  }
-
-  .contact-link {
-    @apply hover:scale-125 transition-transform duration-200;
+  .skill-card:hover .skill-icon {
+    @apply text-blue-500 scale-110;
   }
 }

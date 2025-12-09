@@ -1,27 +1,25 @@
-import { FaSun, FaMoon } from "react-icons/fa";
-import ContactLinks from "./ContactLinks";
-import Skills from "./Skills";
-import useTheme from "../hooks/useTheme";
 
 const Hero = () => {
-  const { theme, toggleTheme } = useTheme();
-
   return (
-    <header className="hero">
+    <section id="hero" className="hero">
       <div className="hero__content">
+        <span className="mb-4 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold tracking-wide">
+          Disponible para trabajar
+        </span>
+
         <h1 className="hero__title">Luis Jhonata Cueva R.</h1>
 
-        <h2 className="hero__subtitle">Habilidades</h2>
+        <p className="hero__subtitle">
+          Arquitecto de Software Fullstack & Desarrollador Android.
+          <br />
+          Transformando ideas complejas en experiencias digitales fluidas.
+        </p>
 
-        <Skills />
-
-        <div className="flex flex-col items-center gap-4">
-          <ContactLinks />
-
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
           <a
             href="/CV_LuisCuevaR_2024_11.pdf"
             download
-            className="btn-download"
+            className="btn-secondary"
             aria-label="Descargar Curriculum Vitae"
           >
             <svg
@@ -30,27 +28,14 @@ const Hero = () => {
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
-              className="btn-download__icon"
+              className="h-5 w-5"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
-              />
-            </svg>
-            Descargar CV
-          </a>
-        </div>
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M12 12v8.25m0-8.25-3-3m3 3 3-3"
       </div>
-
-      <button
-        onClick={toggleTheme}
-        className="theme-toggle"
-        aria-label="Alternar tema oscuro/claro"
-      >
-        {theme === "dark" ? <FaSun size={24} /> : <FaMoon size={24} />}
-      </button>
-    </header>
+    </section>
   );
 };
 

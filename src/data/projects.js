@@ -75,42 +75,66 @@ export const projectBasics = [
 
 export const projectWorks = [
   {
-    name: "Work 01 ",
+    name: "Central Dent",
+    role: "Fullstack Developer",
+    description:
+      "Plataforma integral para gestión clínica dental. Incluye agenda, historial de pacientes y facturación electrónica.",
     image:
       "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/works/work01.png",
     link: "https://slinkter.github.io/webCentralDent/",
+    tags: ["React", "Node.js", "SQL"],
   },
   {
-    name: "Work 02 ",
+    name: "ARSI Web",
+    role: "Frontend Developer",
+    description:
+      "Sitio corporativo de alto rendimiento para empresa de servicios industriales, con catálogo de productos y cotizador.",
     image:
       "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/works/work02.png",
     link: "https://slinkter.github.io/webARSI/",
+    tags: ["HTML/CSS", "JavaScript", "SEO"],
   },
   {
-    name: "Work 03 ",
+    name: "GyA Company",
+    role: "Web Master",
+    description:
+      "Portal de servicios empresariales y consultoría. Optimización de rendimiento y diseño UX/UI moderno.",
     image:
       "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/works/work03.png",
     link: "https://gyacompany.com/",
+    tags: ["WordPress", "PHP", "Analytics"],
   },
 ];
 
 export const projectApps = [
   {
-    name: "App 01 ",
+    name: "ARSI Control",
+    role: "Android Developer",
+    description:
+      "Aplicación móvil para el control de inventarios y logística interna. Sincronización offline-first.",
     image:
       "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/works/app01.png",
     link: "https://slinkter.github.io/webARSI/arsiapp.html",
+    tags: ["Android", "Java", "SQLite"],
   },
   {
-    name: "App 02 ",
+    name: "ARSI Unidades",
+    role: "Android Developer",
+    description:
+      "Gestión de flota vehicular y mantenimientos preventivos. Reportes en tiempo real y alertas.",
     image:
       "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/works/app02.png",
     link: "https://slinkter.github.io/webARSI/arsiunidades.html",
+    tags: ["Android", "Firebase", "Maps API"],
   },
   {
-    name: "App 03 ",
+    name: "ARSI UT",
+    role: "Lead Developer",
+    description:
+      "Herramienta especializada para cálculos de ultrasonido industrial y generación de informes técnicos.",
     image:
       "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/works/app03.png",
     link: "https://slinkter.github.io/webARSI/arsiut.html",
+    tags: ["Kotlin", "PDFBox", "Charts"],
   },
 ];
