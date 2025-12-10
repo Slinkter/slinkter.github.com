@@ -1,0 +1,23 @@
+{
+    "dependencies": {
+        "@google-cloud/functions-framework": "^4.0.1",
+        "cors": "^2.8.5",
+        "firebase-admin": "^11.8.0",
+        "firebase-functions": "^4.3.1",
+        "resend": "^2.0.0"
+    },
+    "description": "Cloud Functions for Slinkter Portfolio",
+    "engines": {
+        "node": "22"
+    },
+    "main": "index.js",
+    "name": "functions",
+    "private": true,
+    "scripts": {
+        "deploy": "firebase deploy --only functions",
+        "logs": "firebase functions:log",
+        "serve": "firebase emulators:start --only functions",
+        "shell": "firebase functions:shell",
+        "start": "npm run shell"
+    }
+}

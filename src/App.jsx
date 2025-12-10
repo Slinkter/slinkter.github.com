@@ -10,6 +10,7 @@ const Skills = lazy(() => import("./components/Skills"));
 const Contact = lazy(() => import("./components/Contact"));
 const WorkCard = lazy(() => import("./components/WorkCard"));
 const ProjectCard = lazy(() => import("./components/ProjectCard"));
+const MessageTracker = lazy(() => import("./components/MessageTracker"));
 
 // Skeletons
 import SkeletonSkills from "./components/skeletons/SkeletonSkills";
@@ -120,6 +121,15 @@ function App() {
                     <Contact />
                 </Suspense>
             </div>
+
+            {/* Message Tracker Section */}
+            <Suspense
+                fallback={
+                    <div className="h-40 w-full max-w-2xl mx-auto bg-gray-200 dark:bg-gray-700 animate-pulse rounded-xl my-20"></div>
+                }
+            >
+                <MessageTracker />
+            </Suspense>
 
             <footer className="app-footer">
                 <p className="app-footer__text">

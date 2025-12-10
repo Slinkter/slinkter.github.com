@@ -120,10 +120,35 @@ Sigue estos pasos para levantar el proyecto localmente:
     pnpm run build
     ```
 
-5.  **Desplegar a GitHub Pages:**
-    ```bash
-    pnpm run deploy
-    ```
+### 🚀 Guía de Despliegue
+
+Para actualizar los cambios en producción, utiliza los siguientes comandos según lo que necesites desplegar:
+
+**1. Actualizar Frontend (GitHub Pages / Hosting)**
+
+Realiza el build optimizado y lo despliega automáticamente:
+
+```bash
+pnpm run deploy
+```
+
+> **Nota:** Si prefieres hacerlo manualmente, primero ejecuta `pnpm run build` y luego el comando de deploy de tu hosting (ej. `firebase deploy --only hosting`).
+
+**2. Actualizar Backend (Firebase Cloud Functions)**
+
+Sube solo las funciones backend (ajustes de memoria, lógica nueva):
+
+```bash
+firebase deploy --only functions
+```
+
+**3. Actualizar Todo (Full Deploy)**
+
+Para desplegar tanto el sitio estático como las funciones backend a la vez:
+
+```bash
+pnpm run build && firebase deploy
+```
 
 ---
 
@@ -154,6 +179,16 @@ Implementado nativamente con Tailwind CSS y persistencia en `localStorage`. El h
 -   [ ] **Unit Testing**: Añadir tests con Vitest y React Testing Library.
 -   [ ] **Lazy Loading**: Implementar `React.lazy` y `Suspense` para carga diferida de secciones pesadas.
 -   [ ] **Animaciones Avanzadas**: Integrar `Framer Motion` para animaciones de entrada (scroll reveal).
+
+---
+
+## 📚 Documentación Detallada
+
+Para profundizar en la arquitectura, ver el historial de cambios o seguir guías paso a paso, consulta la carpeta `/docs`:
+
+-   **[Documentación Técnica (Arquitectura Serverless)](docs/TECHNICAL.md)**: Detalles sobre el patrón BFF, Seguridad y Diagramas de Flujo.
+-   **[Historial de Cambios (Changelog)](docs/CHANGELOG.md)**: Registro de todas las mejoras y nuevas funcionalidades por versión.
+-   **[Tutorial de Implementación](docs/FULL_TUTORIAL.md)**: Guía completa paso a paso de cómo se construyó el proyecto.
 
 ---
 
