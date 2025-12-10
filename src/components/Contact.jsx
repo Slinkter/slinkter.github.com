@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Section from "./Section";
-import ContactLinks from "./ContactLinks";
-import { useContactForm } from "../hooks/useContactForm";
+import Section from "@/components/Section";
+import ContactLinks from "@/components/ContactLinks";
+import { useContactForm } from "@/hooks/useContactForm";
 import {
     FaPaperPlane,
     FaCheckCircle,

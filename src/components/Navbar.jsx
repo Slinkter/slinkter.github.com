@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import useTheme from "../hooks/useTheme";
+import useTheme from "@/hooks/useTheme";
 
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
@@ -23,6 +23,51 @@ const Navbar = () => {
         { name: "Contacto", href: "#contact" },
     ];
 
+    const handleNavClick = (e, href) => {
+        e.preventDefault();
+        const targetId = href.replace("#", "");
+        const element = document.getElementById(targetId);
+
+        if (element) {
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+                elementPosition + window.pageYOffset - headerOffset;
+
+            // Custom Smooth Scroll Function (1000ms duration)
+            const startPosition = window.pageYOffset;
+            const distance = offsetPosition - startPosition;
+            const duration = 1000; // Duración en milisegundos (ajustar p/ más lento)
+            let start = null;
+
+            const easeInOutQuad = (t, b, c, d) => {
+                t /= d / 2;
+                if (t < 1) return (c / 2) * t * t + b;
+                t--;
+                return (-c / 2) * (t * (t - 2) - 1) + b;
+            };
+
+            const animation = (currentTime) => {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const run = easeInOutQuad(
+                    timeElapsed,
+                    startPosition,
+                    distance,
+                    duration
+                );
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            };
+
+            requestAnimationFrame(animation);
+        }
+
+        if (isMobileMenuOpen) {
+            setIsMobileMenuOpen(false);
+        }
+    };
+
     return (
         <nav
             className={`navbar ${
@@ -33,6 +78,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <a
                     href="#"
+                    onClick={(e) => handleNavClick(e, "#hero")}
                     className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
                 >
                     Slinkter
@@ -45,6 +91,7 @@ const Navbar = () => {
                             key={link.name}
                             href={link.href}
                             className="nav-link"
+                            onClick={(e) => handleNavClick(e, link.href)}
                         >
                             {link.name}
                         </a>
@@ -95,7 +142,7 @@ const Navbar = () => {
                             key={link.name}
                             href={link.href}
                             className="nav-link text-lg"
-                            onClick={() => setIsMobileMenuOpen(false)}
+                            onClick={(e) => handleNavClick(e, link.href)}
                         >
                             {link.name}
                         </a>

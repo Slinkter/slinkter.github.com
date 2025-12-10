@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Section from "./Section"; // Importamos Section
+import Section from "@/components/Section"; // Importamos Section
 import { FaSearch, FaCheckCircle, FaUser, FaCalendarAlt } from "react-icons/fa";
-import { contactService } from "../api/contactService";
+import { contactService } from "@/api/contactService";
 
 const MessageTracker = () => {
     const [ticketId, setTicketId] = useState("");

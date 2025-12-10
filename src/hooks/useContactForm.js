@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { contactService } from "../api/contactService";
+import { contactService } from "@/api/contactService";
 
 export const useContactForm = () => {
     const [loading, setLoading] = useState(false);
