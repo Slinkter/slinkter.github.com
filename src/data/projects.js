@@ -66,7 +66,7 @@ export const projectWorks = [
         name: "Central Dent",
         role: "Web Developer",
         description:
-            "Sitio web para clínica dental con integración de Google Maps y botones de acción rápida (WhatsApp/Correo) para la gestión eficiente de citas y consultas.",
+            "Solución web para el sector salud enfocada en la conversión y experiencia del usuario. Implementa integraciones geográficas y canales de comunicación directa para optimizar la gestión de pacientes.",
         image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/works/work01.png",
         link: "https://slinkter.github.io/webCentralDent/",
         tags: ["HTML", "CSS", "JS"],
@@ -84,7 +84,7 @@ export const projectWorks = [
         name: "GyA Company",
         role: "Frontend Junior",
         description:
-            "Rediseño y desarrollo con React y Chakra UI. Se logró aumentar la tasa de conversión en un 15%, reducir el tiempo de carga en un 30% y mejorar el SEO (+10% visitas).",
+            "Modernización de plataforma utilizando React y Chakra UI. Tras una fase inicial de desarrollo, se aplicó un ciclo de auditoría técnica para optimizar el rendimiento y la accesibilidad, logrando una reducción del 30% en tiempos de carga y un incremento del 15% en conversión.",
         image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/works/work03.png",
         link: "https://gyacompany.com/",
         tags: ["React", "Chakra UI", "SEO"],

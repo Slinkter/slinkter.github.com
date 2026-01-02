@@ -13,6 +13,7 @@ module.exports = withMT({
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",
+        "fade-in-up": "fadeIn 0.8s ease-out forwards",
       },
     },
   },

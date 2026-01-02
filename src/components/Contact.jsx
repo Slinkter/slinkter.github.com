@@ -51,10 +51,10 @@ const Contact = () => {
                 {/* Contact Info */}
                 <div className="contact__info">
                     <p className="contact__subtitle">
-                        ¿Tienes una idea innovadora o necesitas un desarrollador
-                        apasionado? <br />
-                        ¡Hablemos! Estoy disponible para proyectos y nuevas
-                        oportunidades.
+                        ¿Buscas elevar la calidad técnica de tu producto? Estoy
+                        disponible para colaborar en proyectos que requieran
+                        arquitectura React sólida y optimización basada en
+                        diagnósticos de alta precisión. ¡Hablemos!
                     </p>
 
                     <div className="contact__links-container">
@@ -73,8 +73,10 @@ const Contact = () => {
                                 ¡Mensaje Enviado!
                             </h4>
                             <p className="contact-success__message">
-                                Gracias por escribir. Hemos recibido tu mensaje
-                                correctamente.
+                                Solicitud recibida. Tu mensaje ha sido procesado
+                                por nuestro sistema de gestión técnica. He
+                                generado un código de seguimiento para nuestra
+                                comunicación.
                             </p>
 
                             {ticketId && (
