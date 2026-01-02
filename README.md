@@ -42,8 +42,9 @@ src/
 │   ├── projectApps.js      # Datos de aplicaciones móviles
 │   ├── projectBasics.js    # Datos de proyectos web
 │   ├── projectWorks.js     # Datos de experiencia laboral
+│   ├── navigation.js       # Datos de navegación y links
 │   └── skills.js           # Lista de habilidades técnicas
-├── hooks/                  # Custom Hooks (useTheme)
+├── hooks/                  # Custom Hooks (useTheme, useSmoothScroll)
 ├── index.css               # Design System (Tokens, BEM Classes, @apply)
 └── main.jsx                # Punto de entrada
 ```
