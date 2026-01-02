@@ -4,6 +4,13 @@ import useTheme from "@/hooks/useTheme";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { NAV_LINKS } from "@/data/navigation";
 
+/**
+ * Componente de Navegación Principal.
+ * Responsable de renderizar el menú, gestionar el tema (Dark/Light) y la navegación suave.
+ * Se adapta a dispositivos móviles mediante un menú hamburguesa.
+ *
+ * @component
+ */
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const { scrollToAnchor } = useSmoothScroll();

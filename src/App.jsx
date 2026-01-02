@@ -1,22 +1,34 @@
 import { useEffect, lazy, Suspense } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Section from "@/components/Section";
-import { projectBasics, projectWorks, projectApps } from "@/data/projects";
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/layout/Hero";
+import Section from "@/components/ui/Section";
+import {
+  projectBasics,
+  projectWorks,
+  projectApps,
+} from "@/features/portfolio/data/projects";
 import "@/App.css";
 
 // Lazy Imports
-const Skills = lazy(() => import("@/components/Skills"));
-const Contact = lazy(() => import("@/components/Contact"));
-const WorkCard = lazy(() => import("@/components/WorkCard"));
-const ProjectCard = lazy(() => import("@/components/ProjectCard"));
-const MessageTracker = lazy(() => import("@/components/MessageTracker"));
+const Skills = lazy(() =>
+  import("@/features/portfolio/components/SkillsSection")
+);
+const Contact = lazy(() =>
+  import("@/features/contact/components/ContactSection")
+);
+const WorkCard = lazy(() => import("@/features/portfolio/components/WorkCard"));
+const ProjectCard = lazy(() =>
+  import("@/features/portfolio/components/ProjectCard")
+);
+const MessageTracker = lazy(() =>
+  import("@/features/contact/components/MessageTracker")
+);
 
 // Skeletons
-import SkeletonSkills from "@/components/skeletons/SkeletonSkills";
-import SkeletonContact from "@/components/skeletons/SkeletonContact";
-import SkeletonWorkCard from "@/components/skeletons/SkeletonWorkCard";
-import SkeletonProjectCard from "@/components/skeletons/SkeletonProjectCard";
+import SkeletonSkills from "@/features/portfolio/components/skeletons/SkeletonSkills";
+import SkeletonContact from "@/features/contact/components/skeletons/SkeletonContact";
+import SkeletonWorkCard from "@/features/portfolio/components/skeletons/SkeletonWorkCard";
+import SkeletonProjectCard from "@/features/portfolio/components/skeletons/SkeletonProjectCard";
 
 function App() {
   useEffect(() => {
@@ -39,7 +51,7 @@ function App() {
             fallback={
               <>
                 {[1, 2, 3].map((i) => (
-                  <SkeletonWorkCard key={i} vertical={true} />
+                  <SkeletonWorkCard key={i} />
                 ))}
               </>
             }
@@ -53,7 +65,6 @@ function App() {
                 image={item.image}
                 link={item.link}
                 tags={item.tags}
-                vertical={true}
               />
             ))}
           </Suspense>
@@ -65,7 +76,7 @@ function App() {
             fallback={
               <>
                 {[1, 2, 3].map((i) => (
-                  <SkeletonWorkCard key={i} vertical={true} />
+                  <SkeletonWorkCard key={i} />
                 ))}
               </>
             }
@@ -79,7 +90,6 @@ function App() {
                 image={item.image}
                 link={item.link}
                 tags={item.tags}
-                vertical={true}
               />
             ))}
           </Suspense>

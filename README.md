@@ -187,9 +187,9 @@ Implementado nativamente con Tailwind CSS y persistencia en `localStorage`. El h
 
 Para profundizar en la arquitectura, ver el historial de cambios o seguir guías paso a paso, consulta la carpeta `/docs`:
 
--   **[Documentación Técnica (Arquitectura Serverless)](docs/TECHNICAL.md)**: Detalles sobre el patrón BFF, Seguridad y Diagramas de Flujo.
--   **[Historial de Cambios (Changelog)](docs/CHANGELOG.md)**: Registro de todas las mejoras y nuevas funcionalidades por versión.
--   **[Tutorial de Implementación](docs/FULL_TUTORIAL.md)**: Guía completa paso a paso de cómo se construyó el proyecto.
+-   **[Arquitectura del Sistema](src/docs/technical/ARCHITECTURE.md)**: Explicación detallada de la Feature-Based Architecture.
+-   **[Estándares de Código](src/docs/process/CODING_STANDARDS.md)**: Convenciones de naming, estructura de archivos y guías de contribución.
+-   **[Historial de Cambios](src/docs/product/CHANGELOG.md)**: Registro de versiones y mejoras.
 
 ---
 
