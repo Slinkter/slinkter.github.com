@@ -1,4 +1,5 @@
 import { RiFileDownloadLine } from "react-icons/ri";
+import cvFile from "../cv/CV_LuisCuevaR_2026_01.pdf";
 
 const Hero = () => {
   return (
@@ -9,7 +10,7 @@ const Hero = () => {
         <h1 className="hero__title">Luis Jhonata Cueva R.</h1>
 
         <p className="hero__headline">
-          Frontend Developer{" "}
+          Frontend Developer
           <span className="text-blue-600 dark:text-blue-400">
             Especializado en React SPA
           </span>
@@ -24,7 +25,7 @@ const Hero = () => {
 
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
           <a
-            href="../cv/CV_LuisCuevaR_2026_01.pdf"
+            href={cvFile}
             download
             className="btn-secondary"
             aria-label="Descargar Curriculum Vitae"
