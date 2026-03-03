@@ -19,17 +19,17 @@ const Section = ({ title, bgVariant = "gray", id, children }) => {
     <section
       id={id}
       className={cn(
-        "py-20 w-full",
+        "py-20 w-full transition-colors duration-300",
         bgVariant === "dark"
-          ? "bg-white dark:bg-gray-900"
-          : "bg-gray-50 dark:bg-gray-800/50",
+          ? "bg-surface-base"
+          : "bg-surface-elevated",
       )}
     >
       <h2
         className={cn(
-          "text-3xl font-bold text-center mb-16 relative inline-block w-full",
+          "text-3xl font-bold text-center mb-16 relative inline-block w-full text-content-main",
           "after:content-[''] after:block after:w-20 after:h-1",
-          "after:bg-blue-500 after:mx-auto after:mt-4 after:rounded-full",
+          "after:bg-brand-primary after:mx-auto after:mt-4 after:rounded-full",
         )}
       >
         {title}

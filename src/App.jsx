@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans selection:bg-blue-500 selection:text-white">
+    <div className="min-h-screen bg-surface-base text-content-main font-sans selection:bg-brand-primary selection:text-white transition-colors duration-300">
       <Navbar />
       <Hero />
 

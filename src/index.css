@@ -3,8 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --brand-primary: 37 99 235; /* Blue 600 */
+    --surface-base: 255 255 255;
+    --surface-elevated: 248 250 252; /* Slate 50 */
+    --text-main: 15 23 42; /* Slate 900 */
+    --text-muted: 71 85 105; /* Slate 600 */
+    --border-subtle: 226 232 240; /* Slate 200 */
+  }
+
+  .dark {
+    --brand-primary: 59 130 246; /* Blue 500 */
+    --surface-base: 2 6 23; /* Slate 950 */
+    --surface-elevated: 15 23 42; /* Slate 900 */
+    --text-main: 248 250 252; /* Slate 50 */
+    --text-muted: 148 163 184; /* Slate 400 */
+    --border-subtle: 30 41 59; /* Slate 800 */
+  }
+
   html {
     scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[rgb(var(--surface-base))] text-[rgb(var(--text-main))] transition-colors duration-300;
   }
 }
 

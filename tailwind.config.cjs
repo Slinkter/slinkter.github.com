@@ -5,6 +5,20 @@ module.exports = withMT({
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        brand: {
+          primary: "rgb(var(--brand-primary) / <alpha-value>)",
+        },
+        surface: {
+          base: "rgb(var(--surface-base) / <alpha-value>)",
+          elevated: "rgb(var(--surface-elevated) / <alpha-value>)",
+        },
+        content: {
+          main: "rgb(var(--text-main) / <alpha-value>)",
+          muted: "rgb(var(--text-muted) / <alpha-value>)",
+        },
+        separator: "rgb(var(--border-subtle) / <alpha-value>)",
+      },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(10px)" },
