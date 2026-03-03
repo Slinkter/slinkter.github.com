@@ -1,7 +1,6 @@
 import { memo } from "react";
 import PropTypes from "prop-types";
 import { FaPaperPlane, FaExclamationCircle } from "react-icons/fa";
-import { cn } from "@/lib/utils";
 import { Input, TextArea } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
@@ -29,8 +28,8 @@ const ContactForm = memo(function ContactForm({
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       {error && (
-        <div 
-          role="alert" 
+        <div
+          role="alert"
           aria-live="polite"
           className="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm rounded-lg flex items-center gap-2"
         >

@@ -39,7 +39,7 @@ const WorkCard = ({
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       className={cn(
-        "bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col hover:-translate-y-1 h-full",
+        "bg-surface-elevated rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 dark:shadow-none border border-separator flex flex-col hover:-translate-y-2 transition-all duration-500 h-full",
         !vertical && "md:flex-row",
       )}
     >
@@ -69,16 +69,16 @@ const WorkCard = ({
       {/* Content */}
       <div
         className={cn(
-          "p-8 flex flex-col justify-center flex-grow",
+          "p-6 sm:p-8 md:p-10 flex flex-col justify-center flex-grow",
           !vertical && "md:w-3/5",
         )}
       >
         <div className="flex justify-between items-start mb-4">
           <div>
-            <span className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1 block">
+            <span className="text-sm font-bold text-brand-primary uppercase tracking-wider mb-1 block">
               {role}
             </span>
-            <h3 className="text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
+            <h3 className="text-xl md:text-3xl font-bold text-content-main leading-tight">
               {name}
             </h3>
           </div>
@@ -99,7 +99,10 @@ const WorkCard = ({
 
         <div className="flex flex-wrap gap-2 mt-auto">
           {tags.map((tag) => (
-            <Tag key={tag} className="bg-surface-base border-separator text-content-muted hover:border-brand-primary/50 transition-colors">
+            <Tag
+              key={tag}
+              className="bg-surface-base border-separator text-content-muted hover:border-brand-primary/50 transition-colors"
+            >
               {tag}
             </Tag>
           ))}
@@ -108,7 +111,6 @@ const WorkCard = ({
     </m.article>
   );
 };
-
 
 WorkCard.propTypes = {
   name: PropTypes.string.isRequired,

@@ -13,23 +13,23 @@ const SOCIAL_LINKS = [
     href: "https://www.linkedin.com/in/luis-jhonatan-cueva-rojas-88b61266/",
     icon: FaLinkedin,
     label: "LinkedIn",
-    color: "text-blue-700",
+    color: "text-blue-600",
   },
   {
     href: "https://github.com/Slinkter",
     icon: FaGithub,
     label: "GitHub",
-    color: "text-gray-700 dark:text-gray-300",
+    color: "text-content-muted",
   },
   {
     href: "https://x.com/LuchoJhony",
     icon: FaTwitter,
     label: "Twitter (X)",
-    color: "text-blue-400",
+    color: "text-sky-400",
   },
-  { href: "#", icon: FaYoutube, label: "YouTube", color: "text-red-600" },
-  { href: "#", icon: FaFacebook, label: "Facebook", color: "text-blue-600" },
-  { href: "#", icon: FaTwitch, label: "Twitch", color: "text-purple-600" },
+  { href: "#", icon: FaYoutube, label: "YouTube", color: "text-red-500" },
+  { href: "#", icon: FaFacebook, label: "Facebook", color: "text-blue-500" },
+  { href: "#", icon: FaTwitch, label: "Twitch", color: "text-purple-500" },
   { href: "#", icon: SiKick, label: "Kick", color: "text-green-500" },
 ];
 
@@ -37,7 +37,7 @@ const SOCIAL_LINKS = [
  * ContactLinks Component
  *
  * Renders a row of social/contact icon links.
- * Pure Tailwind — no BEM abstraction.
+ * Pure Tailwind — uses design tokens for backgrounds and borders.
  *
  * @component
  * @returns {React.JSX.Element}
@@ -51,7 +51,7 @@ const ContactLinks = () => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 bg-white dark:bg-gray-700 rounded-full shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 dark:border-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="p-3 bg-surface-elevated rounded-full shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-separator focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
           aria-label={label}
         >
           <Icon className={color} size={30} />

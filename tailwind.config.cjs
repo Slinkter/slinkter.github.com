@@ -1,6 +1,5 @@
-const withMT = require("@material-tailwind/react/utils/withMT");
-
-module.exports = withMT({
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
@@ -8,10 +7,13 @@ module.exports = withMT({
       colors: {
         brand: {
           primary: "rgb(var(--brand-primary) / <alpha-value>)",
+          glow: "rgb(var(--brand-glow) / <alpha-value>)",
         },
         surface: {
           base: "rgb(var(--surface-base) / <alpha-value>)",
           elevated: "rgb(var(--surface-elevated) / <alpha-value>)",
+          section: "rgb(var(--surface-section) / <alpha-value>)",
+          footer: "rgb(var(--surface-footer) / <alpha-value>)",
         },
         content: {
           main: "rgb(var(--text-main) / <alpha-value>)",
@@ -32,4 +34,4 @@ module.exports = withMT({
     },
   },
   plugins: [],
-});
+};

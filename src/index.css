@@ -3,22 +3,57 @@
 @tailwind utilities;
 
 @layer base {
+  /**
+   * Design Token System — Dual Theme
+   * ----------------------------------
+   * Light: "Arctic Light" — Cool frost whites, blue-tinted neutrals
+   * Dark:  "Deep Void"    — Midnight navy, electric cyan accent
+   * Accent: Electric Cyan  hsl(191, 100%, 50%) — 0 210 255
+   */
   :root {
-    --brand-primary: 37 99 235; /* Blue 600 */
-    --surface-base: 255 255 255;
-    --surface-elevated: 248 250 252; /* Slate 50 */
-    --text-main: 15 23 42; /* Slate 900 */
-    --text-muted: 71 85 105; /* Slate 600 */
-    --border-subtle: 226 232 240; /* Slate 200 */
+    /* ── Accent ────────────────────────────────── */
+    --brand-primary: 0 210 255; /* Electric Cyan */
+    --brand-glow: 0 210 255; /* Alias for shadow/ring references */
+
+    /* ── Surfaces ──────────────────────────────── */
+    --surface-base: 247 249 252; /* Arctic Frost — cool off-white */
+    --surface-elevated: 255 255 255; /* Pure white for cards */
+    --surface-section: 237 243 251; /* Tinted alt-section background */
+    --surface-footer: 220 228 240; /* Slate-blue footer */
+
+    /* ── Text ──────────────────────────────────── */
+    --text-main: 10 20 40; /* Deep navy, near-black */
+    --text-muted: 80 100 135; /* Blue-tinted slate */
+
+    /* ── Borders ───────────────────────────────── */
+    --border-subtle: 210 221 238; /* Cool slate border */
+
+    /* ── Dot Grid ──────────────────────────────── */
+    --dot-color: 0 0 0; /* Electric Cyan — same as brand-primary */
+    --dot-opacity: 0.25; /* Visible on frost-white background */
   }
 
   .dark {
-    --brand-primary: 59 130 246; /* Blue 500 */
-    --surface-base: 2 6 23; /* Slate 950 */
-    --surface-elevated: 15 23 42; /* Slate 900 */
-    --text-main: 248 250 252; /* Slate 50 */
-    --text-muted: 148 163 184; /* Slate 400 */
-    --border-subtle: 30 41 59; /* Slate 800 */
+    /* ── Accent ────────────────────────────────── */
+    --brand-primary: 0 225 255; /* Brighter Cyan for dark bg */
+    --brand-glow: 0 225 255;
+
+    /* ── Surfaces ──────────────────────────────── */
+    --surface-base: 8 10 22; /* Midnight Navy */
+    --surface-elevated: 14 22 46; /* Slightly lighter navy for cards */
+    --surface-section: 11 16 34; /* Alt-section dark */
+    --surface-footer: 5 8 16; /* Deepest for footer */
+
+    /* ── Text ──────────────────────────────────── */
+    --text-main: 225 235 255; /* Cool white with blue tint */
+    --text-muted: 105 135 180; /* Muted indigo-gray */
+
+    /* ── Borders ───────────────────────────────── */
+    --border-subtle: 22 38 75; /* Dark indigo border */
+
+    /* ── Dot Grid ──────────────────────────────── */
+    --dot-color: 0 100 0; /* Slightly brighter Cyan on dark bg */
+    --dot-opacity: 0.22; /* Visible on midnight-navy background */
   }
 
   html {
@@ -26,7 +61,13 @@
   }
 
   body {
-    @apply bg-[rgb(var(--surface-base))] text-[rgb(var(--text-main))] transition-colors duration-300;
+    @apply text-content-main transition-colors duration-300;
+    background-color: rgb(var(--surface-base));
+    background-image: radial-gradient(
+      rgb(var(--dot-color) / var(--dot-opacity)) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
   }
 }
 
@@ -55,13 +96,22 @@
 
   .skeleton {
     @apply rounded-lg;
-    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background: linear-gradient(
+      90deg,
+      rgb(var(--surface-elevated)) 25%,
+      rgb(var(--surface-section)) 50%,
+      rgb(var(--surface-elevated)) 75%
+    );
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
 
-  .dark .skeleton {
-    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-    background-size: 200% 100%;
+  /* ─── Hero atmospheric glow ───────────────────────────────────────────────  */
+  .hero-glow {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% -20%,
+      rgb(var(--brand-primary) / 0.12) 0%,
+      transparent 70%
+    );
   }
 }

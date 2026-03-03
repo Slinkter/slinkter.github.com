@@ -60,8 +60,8 @@ const Contact = memo(function Contact() {
         </div>
 
         {/* Form / Success */}
-        <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
-          <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+        <div className="bg-surface-elevated p-6 sm:p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-separator transition-all duration-300">
+          <h3 className="text-2xl font-extrabold mb-8 text-content-main tracking-tight">
             Envíame un mensaje
           </h3>
           {success ? (

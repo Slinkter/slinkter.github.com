@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Section from "@/components/common/Section";
 import { FaSearch, FaCheckCircle, FaUser, FaCalendarAlt } from "react-icons/fa";
 import { contactService } from "@/features/contact/services/contactService";
 import { cn } from "@/lib/utils";
@@ -46,8 +45,8 @@ const MessageTracker = () => {
   return (
     <div className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 w-full max-w-5xl mx-auto items-start">
       {/* Search Panel */}
-      <div className="bg-surface-base rounded-2xl shadow-lg border border-separator p-6 flex flex-col justify-center h-full transition-all duration-300">
-        <h3 className="text-xl font-bold mb-6 text-center text-content-main uppercase tracking-wider">
+      <div className="bg-surface-elevated rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-separator p-6 sm:p-8 md:p-10 flex flex-col justify-center h-full transition-all duration-300">
+        <h3 className="text-xl font-extrabold mb-8 text-center text-content-main uppercase tracking-tight">
           Consultar Estado
         </h3>
         <form onSubmit={handleSearch} className="flex flex-col gap-4 mb-6">
@@ -59,14 +58,11 @@ const MessageTracker = () => {
             className="text-center text-lg tracking-widest uppercase font-mono"
             required
           />
-          <Button
-            type="submit"
-            isLoading={loading}
-            icon={FaSearch}
-          >
+          <Button type="submit" isLoading={loading} icon={FaSearch}>
             Rastrear
           </Button>
-        </form>        {error && (
+        </form>{" "}
+        {error && (
           <div className="p-4 mt-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg text-center text-sm font-medium border border-red-100 dark:border-red-800">
             {error}
           </div>
@@ -74,14 +70,14 @@ const MessageTracker = () => {
       </div>
 
       {/* Result Panel */}
-      <div className="bg-surface-base rounded-2xl shadow-lg border border-separator p-6 flex flex-col justify-center h-full transition-all duration-300">
+      <div className="bg-surface-elevated rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-separator p-6 sm:p-8 md:p-10 flex flex-col justify-center h-full transition-all duration-300">
         {status ? (
           /* Loaded state */
           <div>
-            <div className="flex items-center gap-4 mb-6 border-b border-separator pb-4">
-              <FaCheckCircle className="text-3xl text-green-500" />
+            <div className="flex items-center gap-4 mb-8 border-b border-separator pb-6">
+              <FaCheckCircle className="text-4xl text-green-500" />
               <div>
-                <h4 className="font-bold text-content-main text-lg">
+                <h4 className="font-extrabold text-content-main text-xl tracking-tight">
                   Ticket Encontrado
                 </h4>
                 <p className="text-xs text-content-muted font-mono">

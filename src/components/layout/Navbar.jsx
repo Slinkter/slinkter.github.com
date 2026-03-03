@@ -10,7 +10,9 @@ import { NAV_LINKS } from "@/components/layout/navigation";
 /**
  * Navbar Component
  *
- * Provides responsive navigation, theme toggling, and smooth scrolling capabilities.
+ * Provides responsive navigation, theme toggling, and smooth scrolling.
+ * Fully token-based — no hardcoded colors.
+ * Glass effect uses surface-base/70 for consistent theme transitions.
  * Memoized to prevent unnecessary re-renders when parent components change.
  *
  * @component
@@ -53,7 +55,7 @@ const Navbar = memo(function Navbar() {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 h-16 flex items-center",
         isScrolled
-          ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 shadow-sm"
+          ? "bg-surface-base/75 backdrop-blur-xl border-b border-separator/60 shadow-sm shadow-separator/30"
           : "bg-transparent",
       )}
     >
@@ -61,7 +63,7 @@ const Navbar = memo(function Navbar() {
         {/* Logo */}
         <button
           onClick={(e) => handleNavClick(e, "#hero")}
-          className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
+          className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-sm"
         >
           Slinkter
         </button>
@@ -71,7 +73,7 @@ const Navbar = memo(function Navbar() {
           {NAV_LINKS.map((link) => (
             <button
               key={link.name}
-              className="inline-flex items-center min-h-[44px] text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
+              className="inline-flex items-center min-h-[44px] text-content-muted hover:text-brand-primary font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-sm"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
@@ -81,10 +83,18 @@ const Navbar = memo(function Navbar() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-yellow-400"
-            aria-label={theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            className="p-2 rounded-full hover:bg-surface-elevated transition-colors text-content-muted hover:text-brand-primary"
+            aria-label={
+              theme === "dark"
+                ? "Cambiar a modo claro"
+                : "Cambiar a modo oscuro"
+            }
           >
-            {theme === "dark" ? <FaSun size={20} aria-hidden="true" /> : <FaMoon size={20} aria-hidden="true" />}
+            {theme === "dark" ? (
+              <FaSun size={20} aria-hidden="true" />
+            ) : (
+              <FaMoon size={20} aria-hidden="true" />
+            )}
           </m.button>
         </div>
 
@@ -94,18 +104,34 @@ const Navbar = memo(function Navbar() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
-            className="p-2 mr-4 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-yellow-400"
-            aria-label={theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            className="p-2 mr-4 rounded-full hover:bg-surface-elevated transition-colors text-content-muted hover:text-brand-primary"
+            aria-label={
+              theme === "dark"
+                ? "Cambiar a modo claro"
+                : "Cambiar a modo oscuro"
+            }
           >
-            {theme === "dark" ? <FaSun size={20} aria-hidden="true" /> : <FaMoon size={20} aria-hidden="true" />}
+            {theme === "dark" ? (
+              <FaSun size={20} aria-hidden="true" />
+            ) : (
+              <FaMoon size={20} aria-hidden="true" />
+            )}
           </m.button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-gray-600 dark:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
-            aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+            className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-content-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-sm"
+            aria-label={
+              isMobileMenuOpen
+                ? "Cerrar menú de navegación"
+                : "Abrir menú de navegación"
+            }
             aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? <FaTimes size={24} aria-hidden="true" /> : <FaBars size={24} aria-hidden="true" />}
+            {isMobileMenuOpen ? (
+              <FaTimes size={24} aria-hidden="true" />
+            ) : (
+              <FaBars size={24} aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
@@ -118,12 +144,12 @@ const Navbar = memo(function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute top-16 left-0 w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 shadow-md md:hidden flex flex-col items-center py-6 space-y-4 overflow-hidden"
+            className="absolute top-16 left-0 w-full bg-surface-base/90 backdrop-blur-xl border-b border-separator/60 shadow-md md:hidden flex flex-col items-center py-6 space-y-4 overflow-hidden"
           >
             {NAV_LINKS.map((link) => (
               <button
                 key={link.name}
-                className="inline-flex items-center min-h-[44px] text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm text-lg"
+                className="inline-flex items-center min-h-[44px] text-content-muted hover:text-brand-primary font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-sm text-lg"
                 onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.name}

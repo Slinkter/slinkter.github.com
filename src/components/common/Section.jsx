@@ -6,25 +6,18 @@ import { cn } from "@/lib/utils";
  *
  * Reusable layout wrapper for page sections.
  * Pure Tailwind — no BEM abstraction.
+ * Fully transparent background — the global dot-grid fixed layer
+ * in App.jsx provides the visual background for all sections.
  *
  * @component
  * @param {Object} props
  * @param {string} props.title - Section heading text
- * @param {"gray"|"dark"} [props.bgVariant="gray"] - Background variant
  * @param {string} [props.id] - HTML id attribute
  * @param {React.ReactNode} props.children
  */
-const Section = ({ title, bgVariant = "gray", id, children }) => {
+const Section = ({ title, id, children }) => {
   return (
-    <section
-      id={id}
-      className={cn(
-        "py-20 w-full transition-colors duration-300",
-        bgVariant === "dark"
-          ? "bg-surface-base"
-          : "bg-surface-elevated",
-      )}
-    >
+    <section id={id} className="py-20 w-full">
       <h2
         className={cn(
           "text-3xl font-bold text-center mb-16 relative inline-block w-full text-content-main",
@@ -43,7 +36,6 @@ const Section = ({ title, bgVariant = "gray", id, children }) => {
 
 Section.propTypes = {
   title: PropTypes.string.isRequired,
-  bgVariant: PropTypes.oneOf(["gray", "dark"]),
   id: PropTypes.string,
   children: PropTypes.node.isRequired,
 };

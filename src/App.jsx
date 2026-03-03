@@ -1,4 +1,5 @@
 import { useEffect, lazy, Suspense } from "react";
+import { useScroll } from "motion/react";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/layout/Hero";
 import Section from "@/components/common/Section";
@@ -8,7 +9,6 @@ import {
   projectWorks,
   projectApps,
 } from "@/features/projects/data/projects";
-import "@/App.css";
 
 // Lazy Imports
 const Skills = lazy(() =>
@@ -38,8 +38,19 @@ function App() {
     document.title = "LJCR - Portfolio ";
   }, []);
 
+  // ── Parallax dot-grid ───────────────────────────────────────────────────────
+  // Updates body's background-position directly — no re-renders, no z-index
+  // conflicts. Body background-image is ALWAYS behind every element by CSS spec.
+  // Dots move at 30% of scroll speed → smooth parallax depth.
+  const { scrollY } = useScroll();
+  useEffect(() => {
+    return scrollY.on("change", (y) => {
+      document.body.style.backgroundPosition = `0px ${y * 0.3}px`;
+    });
+  }, [scrollY]);
+
   return (
-    <div className="min-h-screen bg-surface-base text-content-main font-sans selection:bg-brand-primary selection:text-white transition-colors duration-300">
+    <div className="min-h-screen text-content-main font-sans selection:bg-brand-primary selection:text-white">
       <Navbar />
       <Hero />
 
@@ -143,20 +154,28 @@ function App() {
       <ErrorBoundary>
         <Suspense
           fallback={
-            <div className="h-40 w-full max-w-2xl mx-auto bg-gray-200 dark:bg-gray-700 animate-pulse rounded-xl my-20"></div>
+            <div className="h-40 w-full max-w-2xl mx-auto skeleton rounded-xl my-20" />
           }
         >
-          <Section title="Rastrea tu Mensaje" bgVariant="dark" id="tracker">
-            <MessageTracker />
-          </Section>
+          <div className="py-20">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold text-center mb-16 relative inline-block w-full text-content-main after:content-[''] after:block after:w-20 after:h-1 after:bg-brand-primary after:mx-auto after:mt-4 after:rounded-full">
+                Rastrea tu Mensaje
+              </h2>
+              <MessageTracker />
+            </div>
+          </div>
         </Suspense>
       </ErrorBoundary>
 
-      <footer className="py-8 text-center text-gray-500 text-sm bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-        <p className="container mx-auto px-4">
-          © {new Date().getFullYear()} Luis Jhonata Cueva R. Construido con
-          React & Tailwind.
-        </p>
+      <footer className="py-12 text-center bg-surface-footer border-t border-separator transition-colors duration-300">
+        <div className="container mx-auto px-4">
+          <p className="text-content-muted text-sm font-medium">
+            © {new Date().getFullYear()} Luis Jhonata Cueva R. Construido con
+            <span className="text-brand-primary mx-1">React</span> &
+            <span className="text-brand-primary mx-1">Tailwind</span>.
+          </p>
+        </div>
       </footer>
     </div>
   );
