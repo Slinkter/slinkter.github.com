@@ -1,22 +1,36 @@
 import { useEffect, lazy, Suspense } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Section from "@/components/Section";
-import { projectBasics, projectWorks, projectApps } from "@/data/projects";
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/layout/Hero";
+import Section from "@/components/common/Section";
+import {
+  projectBasics,
+  projectWorks,
+  projectApps,
+} from "@/features/projects/data/projects";
 import "@/App.css";
 
 // Lazy Imports
-const Skills = lazy(() => import("@/components/Skills"));
-const Contact = lazy(() => import("@/components/Contact"));
-const WorkCard = lazy(() => import("@/components/WorkCard"));
-const ProjectCard = lazy(() => import("@/components/ProjectCard"));
-const MessageTracker = lazy(() => import("@/components/MessageTracker"));
+const Skills = lazy(() =>
+  import("@/features/skills").then((mod) => ({ default: mod.Skills })),
+);
+const Contact = lazy(() =>
+  import("@/features/contact").then((mod) => ({ default: mod.Contact })),
+);
+const WorkCard = lazy(() =>
+  import("@/features/projects").then((mod) => ({ default: mod.WorkCard })),
+);
+const ProjectCard = lazy(() =>
+  import("@/features/projects").then((mod) => ({ default: mod.ProjectCard })),
+);
+const MessageTracker = lazy(() =>
+  import("@/features/contact").then((mod) => ({ default: mod.MessageTracker })),
+);
 
 // Skeletons
-import SkeletonSkills from "@/components/skeletons/SkeletonSkills";
-import SkeletonContact from "@/components/skeletons/SkeletonContact";
-import SkeletonWorkCard from "@/components/skeletons/SkeletonWorkCard";
-import SkeletonProjectCard from "@/components/skeletons/SkeletonProjectCard";
+import SkeletonSkills from "@/components/ui/skeletons/SkeletonSkills";
+import SkeletonContact from "@/components/ui/skeletons/SkeletonContact";
+import SkeletonWorkCard from "@/components/ui/skeletons/SkeletonWorkCard";
+import SkeletonProjectCard from "@/components/ui/skeletons/SkeletonProjectCard";
 
 function App() {
   useEffect(() => {
@@ -24,7 +38,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-layout">
+    <div className="min-h-screen transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans selection:bg-blue-500 selection:text-white">
       <Navbar />
       <Hero />
 
@@ -34,7 +48,7 @@ function App() {
 
       <div id="projects">
         {/* Trabajos Realizados */}
-        <Section title="Experiencia & Trabajos" bgClass="section--gray">
+        <Section title="Experiencia & Trabajos" bgVariant="gray">
           <Suspense
             fallback={
               <>
@@ -60,7 +74,7 @@ function App() {
         </Section>
 
         {/* Proyectos Android */}
-        <Section title="Aplicaciones Android" bgClass="section--dark">
+        <Section title="Aplicaciones Android" bgVariant="dark">
           <Suspense
             fallback={
               <>
@@ -88,7 +102,7 @@ function App() {
         {/* Proyectos Web */}
         <Section
           title="Proyectos Experimentales"
-          bgClass="section--gray"
+          bgVariant="gray"
           id="experimental"
         >
           <Suspense
@@ -131,8 +145,8 @@ function App() {
         <MessageTracker />
       </Suspense>
 
-      <footer className="app-footer">
-        <p className="app-footer__text">
+      <footer className="py-8 text-center text-gray-500 text-sm bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <p className="container mx-auto px-4">
           © {new Date().getFullYear()} Luis Jhonata Cueva R. Construido con
           React & Tailwind.
         </p>

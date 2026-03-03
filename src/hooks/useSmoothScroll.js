@@ -1,48 +1,34 @@
 import { useCallback } from "react";
-import { HEADER_OFFSET } from "@/data/navigation";
+import { HEADER_OFFSET } from "@/components/layout/navigation";
 
 /**
- * Custom hook for smooth scrolling to anchor links with easing.
- * @returns {Object} - Object containing the scrollToAnchor function.
+ * Custom hook for smooth scrolling to anchor links.
+ * Employs native browser smooth scrolling and updates the URL dynamically
+ * without triggering a page reload, improving UX.
+ *
+ * @returns {{ scrollToAnchor: (e: React.MouseEvent, href: string) => void }}
  */
 const useSmoothScroll = () => {
-  const easeInOutQuad = (t, b, c, d) => {
-    t /= d / 2;
-    if (t < 1) return (c / 2) * t * t + b;
-    t--;
-    return (-c / 2) * (t * (t - 2) - 1) + b;
-  };
-
   const scrollToAnchor = useCallback((e, href) => {
     e.preventDefault();
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
 
     if (element) {
+      // 1. Calcular posición exacta descontando el Navbar estático
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - HEADER_OFFSET;
+      const offsetPosition = elementPosition + window.scrollY - HEADER_OFFSET;
 
-      // Custom Smooth Scroll Function (1000ms duration)
-      const startPosition = window.pageYOffset;
-      const distance = offsetPosition - startPosition;
-      const duration = 1000; // Duration in ms
-      let start = null;
+      // 2. Ejecutar Scroll Nativo fluido
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
 
-      const animation = (currentTime) => {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const run = easeInOutQuad(
-          timeElapsed,
-          startPosition,
-          distance,
-          duration
-        );
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-      };
-
-      requestAnimationFrame(animation);
+      // 3. Actualizar la URL de forma silenciosa para mejor UX/SEO visual
+      if (window.history.pushState) {
+        window.history.pushState(null, null, href);
+      }
     }
   }, []);
 

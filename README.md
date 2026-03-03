@@ -1,111 +1,91 @@
-# Portafolio Profesional - Ingeniería de Software & Frontend Architecture
+# 🚀 Portafolio Profesional — Luis Jhonata Cueva R.
 
-> **Plataforma web de alto rendimiento diseñada bajo principios de arquitectura limpia, accesibilidad universal y un flujo de trabajo iterativo potenciado por auditorías de IA.**
+> **Frontend Engineer & React Architect** — Una plataforma de alto rendimiento diseñada bajo principios de ingeniería moderna: **Feature-Sliced Design (FSD)**, **Accesibilidad Proactiva** y **Arquitectura Serverless**.
 
-Este proyecto no es solo una colección de trabajos; es una demostración técnica de capacidad de ingeniería. Implementa una arquitectura modular escalable, un sistema de diseño atómico basado en **Tailwind CSS** y optimizaciones de rendimiento orientadas a métricas Core Web Vitals.
-
----
-
-## 🚀 Stack Tecnológico & Herramientas
-
-Arquitectura seleccionada para garantizar mantenibilidad a largo plazo y rendimiento excepcional:
-
-- **Core**: [React 18](https://reactjs.org/) (Gestión de estado eficiente, Custom Hooks, Lazy Loading).
-- **Build System**: [Vite](https://vitejs.dev/) (Entorno de desarrollo de última generación).
-- **Styling Engine**: [Tailwind CSS 3.4](https://tailwindcss.com/) (Utility-first con abstracciones semánticas BEM).
-- **Ecosistema**:
-  - `react-icons` para iconografía optimizada.
-  - `gh-pages` para despliegue continuo (CI/CD).
-- **Calidad de Código**:
-  - ESLint & Prettier para estandarización.
-  - Auditorías automatizadas de IA para detección de deuda técnica.
+[![Deploy](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?logo=github)](https://slinkter.github.io)
 
 ---
 
-## 🏗 Filosofía de Ingeniería
+## 🏗️ Arquitectura de Software: Feature-Sliced Design (FSD)
 
-### 1. Human-in-Command, AI-as-Auditor
+A diferencia de las arquitecturas planas por "tipo de archivo", este proyecto implementa **FSD** para resolver el acoplamiento y facilitar la escalabilidad.
 
-A diferencia del desarrollo asistido convencional, este proyecto utiliza un flujo donde la IA actúa como **auditor de calidad** y no como generador primario.
-
-- **Fase 1**: Desarrollo y arquitectura por el ingeniero (Luis Jhonata Cueva R.).
-- **Fase 2**: Diagnóstico profundo mediante agentes de IA para identificar cuellos de botella y mejoras de UX.
-- **Fase 3**: Refactorización estratégica basada en hallazgos.
-
-### 2. Clean Architecture en Frontend
-
-El código está organizado para desacoplar la lógica de negocio de la interfaz de usuario:
-
+### Estructura de Capas (`src/`)
 ```text
-src/
-├── components/         # Capa de Presentación
-│   ├── ui/             # Átomos y Moléculas (Botones, Inputs)
-│   ├── layout/         # Organismos Estructurales (Navbar, Footer)
-│   └── ...             # Componentes de Negocio (Hero, Projects)
-├── data/               # Capa de Datos (Data Sources estáticos)
-├── hooks/              # Lógica de Aplicación (Use Cases)
-├── context/            # Estado Global (Theme)
-└── styles/             # Sistema de Diseño y Tokens
+├── app/          # Capa de Configuración: Providers (Theme), estilos globales.
+├── components/   # Capa Estructural: Componentes transversales sin lógica de negocio.
+├── features/     # Capa de Dominio: Lógica de negocio (Contact, Projects, Skills).
+├── hooks/        # Capa de Comportamiento: Abstracciones de lógica reutilizable.
+└── lib/          # Capa de Utilidades: Configuraciones de infraestructura (API, Utils).
 ```
 
-### 3. Rendimiento como Feature
-
-- **Code Splitting**: Uso de `React.lazy` y `Suspense` para carga diferida de módulos pesados.
-- **Animaciones Nativas**: CSS transitions aceleradas por GPU para mantener 60fps constantes.
-- **Lighthouse Score**: Objetivo constante de >95 en Performance, Accessibility y SEO.
+- **Por qué FSD?**: Permite que cada "Feature" (ej. el formulario de contacto) sea autocontenido. Si el formulario cambia, no afecta a la visualización de proyectos.
 
 ---
 
-## 🛠 Instalación Local
+## 🛠️ Stack Tecnológico: Racionalidad e Implementación
 
-Requisitos: Node.js v18+ y pnpm.
+### 1. Animaciones: `motion` (Framer Motion)
+- **Por qué**: Necesitábamos animaciones fluidas que no comprometieran el hilo principal de renderizado y que respetaran las preferencias del sistema.
+- **Implementación**:
+  - **Efecto Stagger**: Implementado en `<Hero />` mediante `variants` para que los elementos aparezcan en cascada (`staggerChildren`).
+  - **Viewport Detection**: Usamos `whileInView` en las tarjetas de proyecto para activar animaciones solo cuando el usuario hace scroll hacia ellas, optimizando el uso de CPU.
 
-1.  **Clonar repositorio**
+### 2. Estilado: `Tailwind CSS` + `cn()` Utility
+- **Por qué**: Tailwind elimina la necesidad de mantener archivos CSS gigantes. Sin embargo, para manejar clases condicionales sin conflictos de especificidad, implementamos la utilidad `cn`.
+- **Implementación**:
+  - **Función `cn` (`lib/utils.js`)**: Combina `clsx` (lógica condicional) con `tailwind-merge` (resolución de conflictos).
+  - *Ejemplo*: `className={cn("base-style", isActive && "active-style")}`.
 
-    ```bash
-    git clone https://github.com/Slinkter/slinkter.github.com.git
-    cd slinkter.github.com
-    ```
+### 3. Backend: `Firebase Cloud Functions` + `Resend`
+- **Por qué**: Queríamos un portafolio estático pero con capacidades dinámicas sin pagar un servidor 24/7.
+- **Implementación**:
+  - **Serverless**: El contacto se procesa en una función Node.js (`onRequest` v2) que valida los datos y utiliza **Resend** para garantizar una entrega de correo con 99.9% de éxito.
+  - **Seguridad**: Las claves de API están protegidas en **Google Cloud Secrets**, nunca expuestas en el cliente.
 
-2.  **Instalar dependencias**
-
-    ```bash
-    pnpm install
-    ```
-
-3.  **Iniciar entorno de desarrollo**
-
-    ```bash
-    pnpm run dev
-    ```
-
-4.  **Build de Producción**
-    ```bash
-    pnpm run build
-    ```
+### 4. Rendimiento: `React.lazy` & `Suspense`
+- **Por qué**: Para obtener un **Lighthouse Score** de 90+, el bundle inicial debe ser mínimo.
+- **Implementación**:
+  - Las features pesadas (`Contact`, `Skills`) se cargan mediante *Dynamic Imports*. Mientras se cargan, mostramos **Skeleton Screens** personalizados para evitar saltos visuales (Layout Shift).
 
 ---
 
-## 📚 Documentación Técnica Extendida
+## 🪝 Hooks de Ingeniería (Lógica Abstraída)
 
-El proyecto cuenta con documentación detallada en la carpeta `src/docs` para revisión de arquitectura y decisiones de diseño:
-
-- 📂 **[Guía Técnica & Arquitectura](src/docs/TECHNICAL.md)**: Patrones de diseño y decisiones estructurales.
-- 📂 **[Historial de Cambios (Changelog)](src/docs/CHANGELOG.md)**: Registro de evoluciones y versiones.
-- 📂 **[Diagnóstico Técnico 2025](src/docs/DIAGNOSTICO_COMPLETO_2025.md)**: Reporte de la última gran auditoría de calidad.
+| Hook | Propósito Técnico | Implementación |
+| :--- | :--- | :--- |
+| `useReducedMotion` | **Accesibilidad** | Detecta si el usuario prefiere menos movimiento en su SO y desactiva las animaciones de `motion` globalmente. |
+| `useTheme` | **Persistencia** | Sincroniza el estado del tema (Light/Dark) con `localStorage` y la clase `dark` del documento. |
+| `useSmoothScroll` | **UX Nativa** | Implementa scroll suave mediante la API nativa del navegador, actualizando la URL sin recargar la página (`pushState`). |
 
 ---
 
-## 🤝 Contribución y Código de Conducta
+## 🧩 Componentes Clave
 
-Este es un proyecto personal open-source. Las sugerencias de mejora (Issues) y Pull Requests son bienvenidos bajo el estándar de **Conventional Commits**.
+- **`<Section />`**: Un "Layout Wrapper" que estandariza los márgenes y los títulos de todas las secciones, asegurando consistencia visual en todo el portafolio.
+- **`<WorkCard />`**: Componente polimórfico que adapta su diseño (vertical/horizontal) mediante props, utilizando `tailwind-merge` para inyectar estilos específicos sin romper el diseño base.
+- **`<MessageTracker />`**: Interfaz reactiva que consulta el estado de los mensajes enviados en tiempo real desde Firestore.
 
-1.  Fork del repositorio.
-2.  Feature Branch: `git checkout -b feature/mejora-rendimiento`.
-3.  Commit: `git commit -m "perf: optimizar carga de imágenes"`.
-4.  Push & PR.
+---
+
+## 🚀 Guía de Desarrollo
+
+### Requisitos
+- **pnpm** (Preferido por su velocidad y gestión de espacio en disco).
+- Node.js 18+.
+
+### Instalación
+```bash
+pnpm install
+pnpm dev
+```
+
+### Build & Deploy
+El proyecto utiliza un pipeline de integración continua simple:
+1. `pnpm build`: Genera el bundle optimizado.
+2. `pnpm deploy`: Utiliza la librería `gh-pages` para publicar automáticamente en el entorno de producción.
 
 ---
 
 **© 2026 Luis Jhonata Cueva R.**
-_Ingeniero de Sistemas & Frontend Architect. Construyendo la web del futuro con precisión y ética._
+_Frontend Engineer & Performance Advocate._
