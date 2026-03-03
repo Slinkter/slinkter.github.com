@@ -1,3 +1,21 @@
+/**
+ * @typedef {Object} ProjectBasic
+ * @property {string} name - The display name of the project
+ * @property {string} image - Absolute URL to the project preview image
+ * @property {string} link - External URL to the live project or repo
+ */
+
+/**
+ * @typedef {Object} ProjectWork
+ * @property {string} name - Project name
+ * @property {string} role - Role held during the project
+ * @property {string} description - Summary of achievements and tech used
+ * @property {string} image - Preview image URL
+ * @property {string} link - Production or demo link
+ * @property {string[]} tags - List of main technologies
+ */
+
+/** @type {ProjectBasic[]} */
 export const projectBasics = [
     {
         name: "Project 01 ",
@@ -61,6 +79,7 @@ export const projectBasics = [
     },
 ];
 
+/** @type {ProjectWork[]} */
 export const projectWorks = [
     {
         name: "Central Dent",
@@ -91,6 +110,7 @@ export const projectWorks = [
     },
 ];
 
+/** @type {ProjectWork[]} */
 export const projectApps = [
     {
         name: "ARSI APP",

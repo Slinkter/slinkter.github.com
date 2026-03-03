@@ -1,8 +1,35 @@
+/**
+ * @typedef {Object} ContactMessage
+ * @property {string} nombreCompleto - Full name of the sender
+ * @property {string} email - Valid email address
+ * @property {string} mensaje - The content of the message
+ */
+
+/**
+ * @typedef {Object} ContactResponse
+ * @property {boolean} success - Operation status
+ * @property {string} message - Response message from server
+ * @property {string} [id] - Created message/ticket ID
+ */
+
+/**
+ * @typedef {Object} MessageStatus
+ * @property {string} id - Ticket ID
+ * @property {string} nombre - Sender name
+ * @property {string} email - Sender email
+ * @property {string} mensaje - Message content
+ * @property {string} fecha - Creation date
+ * @property {'Recibido' | 'En Revisión' | 'Respondido'} estado - Current status
+ */
+
 export const contactService = {
-    /*
-     * Envía los datos del formulario al backend (Firebase Functions)
-     * @param {Object} formData - { nombreCompleto, email, mensaje }
-     * @returns {Promise<Object>} - Respuesta del servidor
+    /**
+     * Sends contact form data to the backend serverless function.
+     * 
+     * @async
+     * @param {ContactMessage} formData - The validated form data
+     * @returns {Promise<ContactResponse>} The server response
+     * @throws {Error} If network fails or server returns error status
      */
     sendMessage: async (formData) => {
         // En desarrollo, puedes usar la URL del emulador si corres 'npm run serve' en /functions
@@ -40,9 +67,12 @@ export const contactService = {
         }
     },
     /**
-     * Consulta el estado de un mensaje por su ID
-     * @param {string} id - Ticket ID (ej: 0qqGMmN81eHJyMhTyzU3)
-     * @returns {Promise<Object>} - Datos del mensaje
+     * Retrieves the current processing status of a message by its unique ID.
+     * 
+     * @async
+     * @param {string} id - Ticket ID (e.g. 0qqGMmN81eHJyMhTyzU3)
+     * @returns {Promise<MessageStatus>} The status and metadata of the message
+     * @throws {Error} If not found or server fails
      */
     checkStatus: async (id) => {
         // TODO: Reemplazar con la URL real después del despliegue: firebase deploy --only functions
