@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { FaPaperPlane, FaExclamationCircle } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import { Input, TextArea } from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
 
 /**
  * ContactForm Component
@@ -73,25 +74,14 @@ const ContactForm = memo(function ContactForm({
         disabled={isLoading}
       />
 
-      <button
+      <Button
         type="submit"
-        className={cn(
-          "w-full px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mt-2",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-          isLoading && "opacity-70 cursor-not-allowed",
-        )}
-        disabled={isLoading}
-        aria-busy={isLoading}
+        isLoading={isLoading}
+        icon={FaPaperPlane}
+        className="mt-2"
       >
-        {isLoading ? (
-          <span>Enviando...</span>
-        ) : (
-          <>
-            <span>Enviar Mensaje</span>
-            <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </>
-        )}
-      </button>
+        Enviar Mensaje
+      </Button>
     </form>
   );
 });

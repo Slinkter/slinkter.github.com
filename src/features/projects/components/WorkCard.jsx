@@ -86,20 +86,22 @@ const WorkCard = ({
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-all transform hover:rotate-12 flex items-center justify-center"
+            className="p-3 rounded-full bg-surface-elevated text-content-muted hover:bg-brand-primary hover:text-white transition-all shadow-sm hover:shadow-brand-primary/30 hover:scale-110 active:scale-95 border border-separator flex items-center justify-center"
             aria-label="Ver Proyecto"
           >
-            <FaExternalLinkAlt size={18} />
+            <FaExternalLinkAlt size={16} />
           </a>
         </div>
 
-        <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed line-clamp-3">
+        <p className="text-content-muted mb-6 leading-relaxed line-clamp-3">
           {description}
         </p>
 
         <div className="flex flex-wrap gap-2 mt-auto">
           {tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
+            <Tag key={tag} className="bg-surface-base border-separator text-content-muted hover:border-brand-primary/50 transition-colors">
+              {tag}
+            </Tag>
           ))}
         </div>
       </div>

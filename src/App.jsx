@@ -49,7 +49,7 @@ function App() {
 
       <div id="projects">
         {/* Trabajos Realizados */}
-        <Section title="Experiencia & Trabajos" bgVariant="gray">
+        <Section title="Experiencia & Trabajos" bgVariant="dark">
           <Suspense
             fallback={
               <>
@@ -75,7 +75,7 @@ function App() {
         </Section>
 
         {/* Proyectos Android */}
-        <Section title="Aplicaciones Android" bgVariant="dark">
+        <Section title="Aplicaciones Android" bgVariant="gray">
           <Suspense
             fallback={
               <>
@@ -103,7 +103,7 @@ function App() {
         {/* Proyectos Web */}
         <Section
           title="Proyectos Experimentales"
-          bgVariant="gray"
+          bgVariant="dark"
           id="experimental"
         >
           <Suspense
@@ -146,7 +146,9 @@ function App() {
             <div className="h-40 w-full max-w-2xl mx-auto bg-gray-200 dark:bg-gray-700 animate-pulse rounded-xl my-20"></div>
           }
         >
-          <MessageTracker />
+          <Section title="Rastrea tu Mensaje" bgVariant="dark" id="tracker">
+            <MessageTracker />
+          </Section>
         </Suspense>
       </ErrorBoundary>
 

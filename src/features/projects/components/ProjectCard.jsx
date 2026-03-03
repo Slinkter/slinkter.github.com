@@ -30,7 +30,7 @@ const ProjectCard = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col h-full"
+      className="group bg-surface-base rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-separator flex flex-col h-full hover:-translate-y-1"
     >
       {/* Image */}
       <div className="w-full h-48 overflow-hidden relative">
@@ -42,40 +42,42 @@ const ProjectCard = ({
           decoding="async"
         />
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+        <div className="absolute inset-0 bg-content-main/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
           <a
             href={projectLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-white rounded-full text-gray-900 hover:scale-110 transition-transform"
+            className="p-4 bg-surface-base rounded-full text-brand-primary shadow-xl hover:scale-110 active:scale-95 transition-all"
+            aria-label={`Ver demo de ${projectName}`}
           >
-            <FaExternalLinkAlt />
+            <FaExternalLinkAlt size={20} />
           </a>
         </div>
       </div>
 
       {/* Body */}
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+        <h3 className="text-xl font-bold text-content-main mb-3">
           {projectName}
         </h3>
 
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-6">
           {tags.map((tag) => (
-            <Tag key={tag} className="text-[10px] px-2 py-0.5">
+            <Tag key={tag} className="text-[10px] px-2 py-0.5 bg-surface-elevated border-separator text-content-muted">
               {tag}
             </Tag>
           ))}
         </div>
 
-        <div className="mt-auto flex gap-4">
+        <div className="mt-auto">
           <a
             href={projectLink}
-            className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+            className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary hover:gap-3 transition-all group/link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Demo en vivo <FaExternalLinkAlt size={12} />
+            Explorar Proyecto
+            <FaExternalLinkAlt size={12} className="group-hover/link:rotate-12 transition-transform" />
           </a>
         </div>
       </div>

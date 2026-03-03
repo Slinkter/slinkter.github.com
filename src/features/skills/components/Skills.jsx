@@ -30,13 +30,13 @@ const itemVariants = {
  */
 const Skills = memo(function Skills() {
   return (
-    <section id="skills" className="w-full py-20 bg-white dark:bg-gray-800">
+    <section id="skills" className="w-full py-20 bg-surface-elevated transition-colors duration-300">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         <h2
           className={cn(
-            "text-3xl font-bold text-center mb-16 relative inline-block w-full",
+            "text-3xl font-bold text-center mb-16 relative inline-block w-full text-content-main",
             "after:content-[''] after:block after:w-20 after:h-1",
-            "after:bg-blue-500 after:mx-auto after:mt-4 after:rounded-full",
+            "after:bg-brand-primary after:mx-auto after:mt-4 after:rounded-full",
           )}
         >
           Stack Tecnológico
@@ -57,17 +57,17 @@ const Skills = memo(function Skills() {
               variants={itemVariants}
               whileHover={{ scale: 1.06, y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="group flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-white dark:hover:bg-gray-700 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-default"
+              className="group flex flex-col items-center justify-center p-6 bg-surface-base rounded-2xl hover:bg-surface-elevated shadow-sm hover:shadow-xl transition-all duration-300 border border-separator cursor-default"
               role="listitem"
             >
               <skill.icon
                 className={cn(
-                  "text-4xl mb-3 text-gray-700 dark:text-gray-300 transition-colors duration-300 group-hover:text-blue-500 group-hover:scale-110",
+                  "text-4xl mb-3 text-content-muted transition-colors duration-300 group-hover:text-brand-primary group-hover:scale-110",
                   skill.color,
                 )}
                 aria-hidden="true"
               />
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mt-2 text-center">
+              <p className="text-sm font-bold text-content-muted mt-2 text-center group-hover:text-content-main transition-colors">
                 {skill.name}
               </p>
             </m.div>

@@ -1,6 +1,7 @@
 import { RiFileDownloadLine } from "react-icons/ri";
 import { m } from "motion/react";
 import cvFile from "@/cv/CV_LuisCuevaR_2026_01.pdf";
+import Button from "@/components/ui/Button";
 
 /** @type {import("motion/react").Variants} */
 const containerVariants = {
@@ -76,15 +77,16 @@ const Hero = () => {
           variants={itemVariants}
           className="flex flex-col sm:flex-row items-center gap-4 mt-8"
         >
-          <a
+          <Button
+            as="a"
             href={cvFile}
             download
-            className="px-8 py-3 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-800 dark:text-white rounded-full font-bold transition-all hover:scale-105 active:scale-95 border border-gray-300 dark:border-gray-700 flex items-center justify-center gap-2"
+            variant="neutral"
+            icon={RiFileDownloadLine}
             aria-label="Descargar Curriculum Vitae"
           >
-            <RiFileDownloadLine className="h-5 w-5" />
             Descargar CV
-          </a>
+          </Button>
         </m.div>
       </m.div>
     </section>
