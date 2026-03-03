@@ -2,6 +2,7 @@ import { memo } from "react";
 import PropTypes from "prop-types";
 import { FaPaperPlane, FaExclamationCircle } from "react-icons/fa";
 import { cn } from "@/lib/utils";
+import { Input, TextArea } from "@/components/ui/Input";
 
 /**
  * ContactForm Component
@@ -24,9 +25,6 @@ const ContactForm = memo(function ContactForm({
   error,
   isLoading,
 }) {
-  const inputBase =
-    "w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-900 outline-none transition-all text-gray-800 dark:text-white";
-
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       {error && (
@@ -40,65 +38,40 @@ const ContactForm = memo(function ContactForm({
         </div>
       )}
 
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-        >
-          Nombre Completo
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={onChange}
-          className={inputBase}
-          placeholder="Ej. Juan Pérez"
-          required
-          disabled={isLoading}
-        />
-      </div>
+      <Input
+        label="Nombre Completo"
+        id="name"
+        name="name"
+        value={formData.name}
+        onChange={onChange}
+        placeholder="Ej. Juan Pérez"
+        required
+        disabled={isLoading}
+      />
 
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-        >
-          Correo Electrónico
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={onChange}
-          className={inputBase}
-          placeholder="juan@ejemplo.com"
-          required
-          disabled={isLoading}
-        />
-      </div>
+      <Input
+        label="Correo Electrónico"
+        id="email"
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={onChange}
+        placeholder="juan@ejemplo.com"
+        required
+        disabled={isLoading}
+      />
 
-      <div>
-        <label
-          htmlFor="message"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-        >
-          Mensaje
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={onChange}
-          rows="4"
-          className={cn(inputBase, "resize-none")}
-          placeholder="Cuéntame sobre tu proyecto..."
-          required
-          disabled={isLoading}
-        />
-      </div>
+      <TextArea
+        label="Mensaje"
+        id="message"
+        name="message"
+        value={formData.message}
+        onChange={onChange}
+        rows="4"
+        placeholder="Cuéntame sobre tu proyecto..."
+        required
+        disabled={isLoading}
+      />
 
       <button
         type="submit"

@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { m } from "motion/react";
+import Tag from "@/components/ui/Tag";
+import { fadeUp } from "@/lib/animations";
 
 /**
  * ProjectCard Component
@@ -24,10 +26,10 @@ const ProjectCard = ({
 }) => {
   return (
     <m.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
       className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col h-full"
     >
       {/* Image */}
@@ -60,12 +62,9 @@ const ProjectCard = ({
 
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs font-semibold px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 border border-blue-100 dark:border-blue-800"
-            >
+            <Tag key={tag} className="text-[10px] px-2 py-0.5">
               {tag}
-            </span>
+            </Tag>
           ))}
         </div>
 
@@ -83,6 +82,7 @@ const ProjectCard = ({
     </m.article>
   );
 };
+
 
 ProjectCard.propTypes = {
   projectName: PropTypes.string.isRequired,

@@ -3,6 +3,7 @@ import Section from "@/components/common/Section";
 import { FaSearch, FaCheckCircle, FaUser, FaCalendarAlt } from "react-icons/fa";
 import { contactService } from "@/features/contact/services/contactService";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/Input";
 
 /**
  * MessageTracker Component
@@ -34,10 +35,6 @@ const MessageTracker = () => {
     }
   };
 
-  // Reused class strings
-  const inputBase =
-    "w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-center text-lg tracking-widest uppercase font-mono";
-
   const resultLabel =
     "block text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1";
 
@@ -54,12 +51,12 @@ const MessageTracker = () => {
             Consultar Estado
           </h3>
           <form onSubmit={handleSearch} className="flex flex-col gap-4 mb-6">
-            <input
-              type="text"
+            <Input
+              id="ticketId"
               value={ticketId}
               onChange={(e) => setTicketId(e.target.value)}
               placeholder="CÓDIGO (EJ. ABC-123)"
-              className={inputBase}
+              className="text-center text-lg tracking-widest uppercase font-mono"
               required
             />
             <button
