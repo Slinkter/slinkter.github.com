@@ -170,9 +170,12 @@ const MessageTracker = () => {
               </div>
 
               <div className="grid grid-cols-1 gap-4">
-                {[FaUser, FaCalendarAlt].map((Icon, i) => (
+                {[
+                  { Icon: FaUser, label: "Solicitante", id: "user" },
+                  { Icon: FaCalendarAlt, label: "Fecha", id: "date" },
+                ].map(({ Icon, label, id }) => (
                   <div
-                    key={i}
+                    key={`sk-field-${id}`}
                     className="flex items-center gap-4 p-3 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 opacity-60"
                   >
                     <div
@@ -184,9 +187,7 @@ const MessageTracker = () => {
                       <Icon />
                     </div>
                     <div>
-                      <span className={resultLabel}>
-                        {i === 0 ? "Solicitante" : "Fecha"}
-                      </span>
+                      <span className={resultLabel}>{label}</span>
                       <div className="h-5 w-32 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
                     </div>
                   </div>

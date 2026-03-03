@@ -52,8 +52,8 @@ function App() {
           <Suspense
             fallback={
               <>
-                {[1, 2, 3].map((i) => (
-                  <SkeletonWorkCard key={i} vertical={true} />
+                {["a", "b", "c"].map((id) => (
+                  <SkeletonWorkCard key={`sk-work-app-${id}`} vertical={true} />
                 ))}
               </>
             }
@@ -78,8 +78,8 @@ function App() {
           <Suspense
             fallback={
               <>
-                {[1, 2, 3].map((i) => (
-                  <SkeletonWorkCard key={i} vertical={true} />
+                {["a", "b", "c"].map((id) => (
+                  <SkeletonWorkCard key={`sk-work-app-${id}`} vertical={true} />
                 ))}
               </>
             }
@@ -108,8 +108,8 @@ function App() {
           <Suspense
             fallback={
               <>
-                {[1, 2, 3].map((i) => (
-                  <SkeletonProjectCard key={i} />
+                {["a", "b", "c"].map((id) => (
+                  <SkeletonProjectCard key={`sk-proj-${id}`} />
                 ))}
               </>
             }

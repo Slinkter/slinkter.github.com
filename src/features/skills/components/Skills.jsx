@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { cn } from "@/lib/utils";
 import { skillsData } from "../data/skills";
 
@@ -42,7 +42,7 @@ const Skills = memo(function Skills() {
           Stack Tecnológico
         </h2>
 
-        <motion.div
+        <m.div
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
@@ -50,7 +50,7 @@ const Skills = memo(function Skills() {
           viewport={{ once: true, margin: "-60px" }}
         >
           {skillsData.map((skill) => (
-            <motion.div
+            <m.div
               key={skill.name}
               variants={itemVariants}
               whileHover={{ scale: 1.06, y: -4 }}
@@ -67,9 +67,9 @@ const Skills = memo(function Skills() {
               <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mt-2 text-center">
                 {skill.name}
               </p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

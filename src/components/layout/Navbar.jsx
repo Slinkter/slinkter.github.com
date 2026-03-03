@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, memo } from "react";
 import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import useTheme from "@/hooks/useTheme";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -25,7 +25,7 @@ const Navbar = memo(function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -46,7 +46,7 @@ const Navbar = memo(function Navbar() {
   );
 
   return (
-    <motion.nav
+    <m.nav
       initial={shouldReduceMotion ? false : { y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -59,27 +59,25 @@ const Navbar = memo(function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-8 max-w-7xl flex justify-between items-center w-full">
         {/* Logo */}
-        <a
-          href="#"
+        <button
           onClick={(e) => handleNavClick(e, "#hero")}
-          className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
+          className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
         >
           Slinkter
-        </a>
+        </button>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           {NAV_LINKS.map((link) => (
-            <a
+            <button
               key={link.name}
-              href={link.href}
               className="inline-flex items-center min-h-[44px] text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
-            </a>
+            </button>
           ))}
-          <motion.button
+          <m.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
@@ -87,19 +85,19 @@ const Navbar = memo(function Navbar() {
             aria-label="Toggle Theme"
           >
             {theme === "dark" ? <FaSun size={20} /> : <FaMoon size={20} />}
-          </motion.button>
+          </m.button>
         </div>
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center">
-          <motion.button
+          <m.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
             className="p-2 mr-4 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-yellow-400"
           >
             {theme === "dark" ? <FaSun size={20} /> : <FaMoon size={20} />}
-          </motion.button>
+          </m.button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-gray-600 dark:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
@@ -114,7 +112,7 @@ const Navbar = memo(function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -122,19 +120,18 @@ const Navbar = memo(function Navbar() {
             className="absolute top-16 left-0 w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 shadow-md md:hidden flex flex-col items-center py-6 space-y-4 overflow-hidden"
           >
             {NAV_LINKS.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
                 className="inline-flex items-center min-h-[44px] text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm text-lg"
                 onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </m.nav>
   );
 });
 

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 /**
  * ProjectCard Component
@@ -23,7 +23,7 @@ const ProjectCard = ({
   tags = ["React", "HTML"],
 }) => {
   return (
-    <motion.article
+    <m.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -79,7 +79,7 @@ const ProjectCard = ({
           </a>
         </div>
       </div>
-    </motion.article>
+    </m.article>
   );
 };
 

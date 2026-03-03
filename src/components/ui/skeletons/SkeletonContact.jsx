@@ -19,8 +19,8 @@ const SkeletonContact = () => {
           <div className="p-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700 space-y-4">
             <div className="h-8 w-48 skeleton" />
             <div className="flex flex-wrap gap-4 mt-6">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-10 w-10 rounded-full skeleton" />
+              {[1, 2, 3, 4].map((num) => (
+                <div key={`social-sk-${num}`} className="h-10 w-10 rounded-full skeleton" />
               ))}
             </div>
           </div>
@@ -30,8 +30,8 @@ const SkeletonContact = () => {
         <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
           <div className="h-8 w-48 skeleton mb-6" />
           <div className="space-y-4">
-            {[1, 2].map((i) => (
-              <div key={i}>
+            {[1, 2].map((num) => (
+              <div key={`input-sk-${num}`}>
                 <div className="h-4 w-24 skeleton mb-1" />
                 <div className="h-12 w-full rounded-xl skeleton" />
               </div>

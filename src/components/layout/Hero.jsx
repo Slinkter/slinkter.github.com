@@ -1,5 +1,5 @@
 import { RiFileDownloadLine } from "react-icons/ri";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import cvFile from "@/cv/CV_LuisCuevaR_2026_01.pdf";
 
 /** @type {import("motion/react").Variants} */
@@ -32,27 +32,27 @@ const Hero = () => {
       id="hero"
       className="min-h-[100dvh] flex flex-col justify-center items-center pt-16 sm:pt-20 relative overflow-hidden"
     >
-      <motion.div
+      <m.div
         className="container mx-auto text-center px-4 relative z-10 flex flex-col items-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.span
+        <m.span
           variants={itemVariants}
           className="inline-flex items-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-widest border border-blue-100 dark:border-blue-800/50 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
         >
           Ingeniero de Sistemas
-        </motion.span>
+        </m.span>
 
-        <motion.h1
+        <m.h1
           variants={itemVariants}
           className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-4 tracking-tight"
         >
           Luis Jhonata Cueva R.
-        </motion.h1>
+        </m.h1>
 
-        <motion.p
+        <m.p
           variants={itemVariants}
           className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-700 dark:text-gray-200 mb-6 tracking-tight"
         >
@@ -60,9 +60,9 @@ const Hero = () => {
           <span className="text-blue-600 dark:text-blue-400">
             Especializado en React SPA
           </span>
-        </motion.p>
+        </m.p>
 
-        <motion.p
+        <m.p
           variants={itemVariants}
           className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 md:mb-10 max-w-2xl leading-relaxed font-light px-2 sm:px-0"
         >
@@ -70,9 +70,9 @@ const Hero = () => {
           continua, integrando <strong>auditorías de IA</strong> para garantizar
           arquitecturas escalables, rendimiento optimizado y código de alta
           precisión.
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row items-center gap-4 mt-8"
         >
@@ -85,8 +85,8 @@ const Hero = () => {
             <RiFileDownloadLine className="h-5 w-5" />
             Descargar CV
           </a>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 };

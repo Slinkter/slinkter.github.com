@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { cn } from "@/lib/utils";
+
+const DEFAULT_TAGS = [];
 
 /**
  * WorkCard Component
@@ -25,11 +27,11 @@ const WorkCard = ({
   description,
   image,
   link,
-  tags = [],
+  tags = DEFAULT_TAGS,
   vertical = false,
 }) => {
   return (
-    <motion.article
+    <m.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -103,7 +105,7 @@ const WorkCard = ({
           ))}
         </div>
       </div>
-    </motion.article>
+    </m.article>
   );
 };
 
