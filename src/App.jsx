@@ -2,6 +2,7 @@ import { useEffect, lazy, Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/layout/Hero";
 import Section from "@/components/common/Section";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
 import {
   projectBasics,
   projectWorks,
@@ -131,19 +132,23 @@ function App() {
 
       {/* New Contact Section */}
       <div id="contact">
-        <Suspense fallback={<SkeletonContact />}>
-          <Contact />
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<SkeletonContact />}>
+            <Contact />
+          </Suspense>
+        </ErrorBoundary>
       </div>
 
       {/* Message Tracker Section */}
-      <Suspense
-        fallback={
-          <div className="h-40 w-full max-w-2xl mx-auto bg-gray-200 dark:bg-gray-700 animate-pulse rounded-xl my-20"></div>
-        }
-      >
-        <MessageTracker />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense
+          fallback={
+            <div className="h-40 w-full max-w-2xl mx-auto bg-gray-200 dark:bg-gray-700 animate-pulse rounded-xl my-20"></div>
+          }
+        >
+          <MessageTracker />
+        </Suspense>
+      </ErrorBoundary>
 
       <footer className="py-8 text-center text-gray-500 text-sm bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
         <p className="container mx-auto px-4">
