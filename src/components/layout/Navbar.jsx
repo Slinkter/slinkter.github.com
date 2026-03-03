@@ -82,9 +82,9 @@ const Navbar = memo(function Navbar() {
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-yellow-400"
-            aria-label="Toggle Theme"
+            aria-label={theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
           >
-            {theme === "dark" ? <FaSun size={20} /> : <FaMoon size={20} />}
+            {theme === "dark" ? <FaSun size={20} aria-hidden="true" /> : <FaMoon size={20} aria-hidden="true" />}
           </m.button>
         </div>
 
@@ -95,16 +95,17 @@ const Navbar = memo(function Navbar() {
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
             className="p-2 mr-4 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-yellow-400"
+            aria-label={theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
           >
-            {theme === "dark" ? <FaSun size={20} /> : <FaMoon size={20} />}
+            {theme === "dark" ? <FaSun size={20} aria-hidden="true" /> : <FaMoon size={20} aria-hidden="true" />}
           </m.button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-gray-600 dark:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
-            aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
             aria-expanded={isMobileMenuOpen}
           >
-            {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            {isMobileMenuOpen ? <FaTimes size={24} aria-hidden="true" /> : <FaBars size={24} aria-hidden="true" />}
           </button>
         </div>
       </div>

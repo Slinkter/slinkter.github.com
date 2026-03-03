@@ -48,6 +48,8 @@ const Skills = memo(function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
+          role="list"
+          aria-label="Lista de habilidades técnicas"
         >
           {skillsData.map((skill) => (
             <m.div
@@ -56,6 +58,7 @@ const Skills = memo(function Skills() {
               whileHover={{ scale: 1.06, y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="group flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-white dark:hover:bg-gray-700 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-default"
+              role="listitem"
             >
               <skill.icon
                 className={cn(

@@ -30,8 +30,12 @@ const ContactForm = memo(function ContactForm({
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       {error && (
-        <div className="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm rounded-lg flex items-center gap-2">
-          <FaExclamationCircle />
+        <div 
+          role="alert" 
+          aria-live="polite"
+          className="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm rounded-lg flex items-center gap-2"
+        >
+          <FaExclamationCircle aria-hidden="true" />
           <span>{error}</span>
         </div>
       )}
