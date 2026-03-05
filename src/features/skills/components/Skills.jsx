@@ -2,28 +2,19 @@ import { memo } from "react";
 import { m } from "motion/react";
 import { cn } from "@/lib/utils";
 import { skillsData } from "../data/skills";
-
-/** @type {import("motion/react").Variants} */
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.07, delayChildren: 0.1 },
-  },
-};
-
-/** @type {import("motion/react").Variants} */
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
-};
+import { staggerContainer, cardItem } from "@/lib/animations";
 
 /**
  * Skills Component
  *
- * Displays the tech stack grid with animated entrance per card.
+ * Displays the tech stack grid with staggered entrance per card.
  * Pure Tailwind — no BEM abstraction.
- * Uses whileInView so animation only fires once the grid enters the viewport.
+ *
+ * The grid (`m.div`) owns `whileInView` + stagger orchestration.
+ * Each skill pill only declares `variants={cardItem}` — no `initial`/
+ * `animate` of its own — so all entrance animations are in sync and
+ * flicker-free. `whileHover` controls lift via Motion (not Tailwind
+ * `hover:translate-y-*`) to avoid transform conflicts.
  *
  * @component
  * @returns {React.JSX.Element}
@@ -45,9 +36,10 @@ const Skills = memo(function Skills() {
           Stack Tecnológico
         </h2>
 
+        {/* ── Motion orchestrator: owns whileInView + stagger ──────────── */}
         <m.div
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6"
-          variants={containerVariants}
+          variants={staggerContainer(0.055, 0.05)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
@@ -57,10 +49,10 @@ const Skills = memo(function Skills() {
           {skillsData.map((skill) => (
             <m.div
               key={skill.name}
-              variants={itemVariants}
-              whileHover={{ scale: 1.06, y: -4 }}
+              variants={cardItem}
+              whileHover={{ scale: 1.06, y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="group flex flex-col items-center justify-center p-6 bg-surface-elevated rounded-2xl hover:bg-surface-elevated shadow-sm hover:shadow-xl transition-all duration-300 border border-separator cursor-default"
+              className="group flex flex-col items-center justify-center p-6 bg-surface-elevated rounded-2xl shadow-sm hover:shadow-xl border border-separator cursor-default"
               role="listitem"
             >
               <skill.icon

@@ -33,6 +33,8 @@ import SkeletonContact from "@/components/ui/skeletons/SkeletonContact";
 import SkeletonWorkCard from "@/components/ui/skeletons/SkeletonWorkCard";
 import SkeletonProjectCard from "@/components/ui/skeletons/SkeletonProjectCard";
 
+const EXPERIMENTAL_TAGS = ["HTML", "CSS", "JS"];
+
 function App() {
   useEffect(() => {
     document.title = "LJCR - Portfolio ";
@@ -70,9 +72,9 @@ function App() {
               </>
             }
           >
-            {projectWorks.map((item, index) => (
+            {projectWorks.map((item) => (
               <WorkCard
-                key={`work-${index}`}
+                key={`work-${item.id || item.name}`}
                 name={item.name}
                 role={item.role}
                 description={item.description}
@@ -96,9 +98,9 @@ function App() {
               </>
             }
           >
-            {projectApps.map((item, index) => (
+            {projectApps.map((item) => (
               <WorkCard
-                key={`app-${index}`}
+                key={`app-${item.id || item.name}`}
                 name={item.name}
                 role={item.role}
                 description={item.description}
@@ -126,17 +128,15 @@ function App() {
               </>
             }
           >
-            {projectBasics
-              .map((item, index) => (
-                <ProjectCard
-                  key={`web-${index}`}
-                  projectName={item.name}
-                  projectImage={item.image}
-                  projectLink={item.link}
-                  tags={["HTML", "CSS", "JS"]}
-                />
-              ))
-              .reverse()}
+            {[...projectBasics].reverse().map((item) => (
+              <ProjectCard
+                key={`web-${item.id || item.name}`}
+                projectName={item.name}
+                projectImage={item.image}
+                projectLink={item.link}
+                tags={EXPERIMENTAL_TAGS}
+              />
+            ))}
           </Suspense>
         </Section>
       </div>
