@@ -41,8 +41,6 @@ export const findUserByUsername = (username, cachedUsersByUsername = {}) => {
  * @returns {number|null} El ID del usuario resuelto o null si no es posible determinar la identidad.
  */
 export const resolveSearchQuery = (input, cachedUsersByUsername = {}) => {
-  console.log("[DEBUG: search-engine] resolveSearchQuery input:", input);
-  
   if (typeof input !== "string") return null;
   
   const stringInput = input.trim();
@@ -51,12 +49,10 @@ export const resolveSearchQuery = (input, cachedUsersByUsername = {}) => {
   // Caso 1: El input es un ID numérico directo
   if (isNumericId(stringInput)) {
     const id = parseInt(stringInput, 10);
-    console.log("[DEBUG: search-engine] Numeric ID detected:", id);
     return id;
   }
   
   // Caso 2: El input es un nombre de usuario que debe resolverse contra la caché O(1)
   const resolved = findUserByUsername(stringInput, cachedUsersByUsername);
-  console.log("[DEBUG: search-engine] Cache resolution result:", resolved);
   return resolved;
 };

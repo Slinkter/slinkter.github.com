@@ -30,13 +30,10 @@ import { UserSchema } from "@/shared/lib/schemas/user.schema";
  * @returns {UserDomain|null} Entidad de usuario mapeada o null si la validación falla críticamente.
  */
 export const mapRawUser = (raw) => {
-  console.log("[DEBUG: user-mappers] mapRawUser raw input:", raw);
   if (!raw) return null;
   
   const result = UserSchema.safeParse(raw);
-  console.log("[DEBUG: user-mappers] Zod parse success:", result.success);
   if (!result.success) {
-    console.error("[DEBUG: user-mappers] Zod parse errors:", result.error.format());
     return null;
   }
   

@@ -13,6 +13,7 @@ import ErrorMessage from "@/shared/ui/ErrorMessage";
 import NotFoundCard from "@/shared/ui/NotFoundCard";
 import StateBoundary from "@/shared/ui/StateBoundary";
 import SearchBar from "@/features/user-search/components/SearchBar";
+import UserDirectoryPanel from "@/features/user-directory/UserDirectoryPanel";
 import UserView from "@/widgets/user-view/UserView";
 import { useUserSearch } from "@/features/user-search/hooks/useUserSearch";
 import { cn } from "@/shared/lib/utils";
@@ -94,6 +95,11 @@ const UserSearchPage = memo(() => {
                 onSearch={handleSearch}
                 onPrefetch={handlePrefetch}
                 isLoading={status === "loading"}
+            />
+
+            <UserDirectoryPanel
+                onSelectUser={handleSearch}
+                selectedUserId={user?.id}
             />
 
             <main className={cn("min-h-100")}>

@@ -20,7 +20,7 @@ export const fetchUserAndPosts = createAsyncThunk(
         if (!resolvedId) {
             return rejectWithValue({
                 status: 404,
-                message: "user.notFoundTitle",
+                message: "Usuario no encontrado",
             });
         }
 
@@ -28,7 +28,7 @@ export const fetchUserAndPosts = createAsyncThunk(
             return await fetchUserProfileById(resolvedId, { signal });
         } catch (error) {
             return rejectWithValue({
-                message: error.message || "error.generic",
+                message: error.message || "Ha ocurrido un error inesperado al recuperar el usuario.",
                 status: error.status,
             });
         }
@@ -53,7 +53,7 @@ export const fetchUsersList = createAsyncThunk(
             return await fetchAllUsers({ signal });
         } catch (error) {
             return rejectWithValue({
-                message: error.message || "error.list.generic",
+                message: error.message || "Error al cargar la lista de usuarios.",
                 status: error.status || 500,
             });
         }

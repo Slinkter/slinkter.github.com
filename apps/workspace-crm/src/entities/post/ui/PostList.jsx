@@ -20,7 +20,7 @@ const PostListComponent = memo(({ userPosts }) => {
       
       <div className="grid gap-golden-base sm:grid-cols-2">
         {userPosts.map((post) => (
-          <Card key={post.id} className="p-golden-base flex flex-col h-full group hover:-translate-y-1 transition-transform duration-300 will-change-transform">
+          <Card key={post.id} className="p-golden-base flex flex-col h-full group hover:-translate-y-1 transition-transform duration-300">
             <h4 className="text-golden-p font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
               {post.title}
             </h4>

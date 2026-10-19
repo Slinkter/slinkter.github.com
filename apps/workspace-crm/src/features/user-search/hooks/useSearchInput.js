@@ -25,7 +25,7 @@ import { SEARCH_LIMITS } from "@/shared/config/constants";
  * @returns {Function} returns.setSearchValue - Función para actualizar el valor manualmente.
  */
 export const useSearchInput = (initialSearch = "") => {
-    const [searchValue, setSearchValue] = useState(initialSearch.toString());
+    const [searchValue, setSearchValue] = useState(() => initialSearch.toString());
 
     /**
      * Ejecuta la lógica de validación y retorna el estado del input.

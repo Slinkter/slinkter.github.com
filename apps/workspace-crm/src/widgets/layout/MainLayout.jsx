@@ -1,6 +1,7 @@
 import { memo } from "react";
 import PropTypes from "prop-types";
 import ThemeToggleButton from "@/shared/ui/ThemeToggleButton";
+import WeatherBadge from "@/shared/ui/WeatherBadge";
 import { PageContainer } from "@/shared/ui/PageContainer";
 
 /**
@@ -15,15 +16,12 @@ function MainLayout({ children }) {
                 <PageContainer className="h-16 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                            UserApp<span className="text-blue-600 dark:text-blue-400">Pro</span>
+                            Workspace<span className="text-blue-600 dark:text-blue-400">Pro</span>
                         </span>
                     </div>
 
-                    <nav className="flex items-center gap-4">
-                        <div className="hidden md:flex items-center gap-6 mr-4 text-sm font-medium text-slate-600 dark:text-slate-400">
-                            <a href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Inicio</a>
-                            <a href="/users" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Usuarios</a>
-                        </div>
+                    <nav className="flex items-center gap-3">
+                        <WeatherBadge />
                         <ThemeToggleButton />
                     </nav>
                 </PageContainer>

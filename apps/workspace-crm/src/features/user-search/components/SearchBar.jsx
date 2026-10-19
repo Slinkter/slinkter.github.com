@@ -44,7 +44,6 @@ const SearchBar = memo(({ onSearch, onPrefetch, isLoading }) => {
                 </div>
                 <Button
                     onClick={handleSearch}
-                    onMouseEnter={handlePrefetch}
                     disabled={!searchValue || isLoading || hasError}
                     isLoading={isLoading}
                     aria-busy={isPending}

@@ -11,8 +11,6 @@
 
 import { getUser, getAllUsers } from "@/entities/user/api/user.api";
 import { getPostsByUser } from "@/entities/post/api/post.api";
-import { mapRawUser } from "@/entities/user/domain/user.mappers";
-import { mapRawPosts } from "@/entities/post/domain/post.mappers";
 
 /**
  * @typedef {Object} UserEntity
@@ -40,8 +38,7 @@ import { mapRawPosts } from "@/entities/post/domain/post.mappers";
 
 /**
  * Recupera el perfil completo de un usuario, incluyendo sus publicaciones.
- * Coordina múltiples llamadas concurrentes a la API y utiliza mappers para
- * transformar los resultados en entidades seguras para el dominio.
+ * Coordina múltiples llamadas concurrentes a la API.
  *
  * @async
  * @function fetchUserProfileById
@@ -49,45 +46,26 @@ import { mapRawPosts } from "@/entities/post/domain/post.mappers";
  * @param {RequestInit} [options={}] - Opciones para las peticiones fetch (ej: signal).
  * @returns {Promise<{user: UserEntity|null, posts: Array<PostEntity>}>} Un objeto que contiene el perfil
  * del usuario mapeado y su lista de publicaciones sanitizada.
- *
- * @example
- * ```javascript
- * const { user, posts } = await fetchUserProfileById(1);
- * if (user) {
- *   console.log(`Usuario ${user.name} tiene ${posts.length} posts.`);
- * }
- * ```
  */
 export const fetchUserProfileById = async (userId, options = {}) => {
-    console.log("[DEBUG: user-service] fetchUserProfileById called for userId:", userId);
     if (!userId) return { user: null, posts: [] };
-    
-    // Ejecutamos ambas promesas. No usamos Promise.all directo si queremos manejo individual resiliente.
+
     const userPromise = getUser(userId, options);
     const postsPromise = getPostsByUser(userId, options).catch((error) => {
         console.warn(
             "Non-critical Error: Failed to fetch posts, continuing with user profile.",
             error,
         );
-        return []; // Retornamos array vacío si fallan los posts, pero permitimos que el usuario cargue.
+        return [];
     });
-    
-    const [rawUser, rawPosts] = await Promise.all([userPromise, postsPromise]);
-    console.log("[DEBUG: user-service] rawUser received:", rawUser);
-    console.log("[DEBUG: user-service] rawPosts received:", rawPosts);
-    
-    // Si el usuario no existe o la API retornó un objeto vacío, aplicamos Early Return.
-    if (!rawUser || Object.keys(rawUser).length === 0) {
-        console.warn("[DEBUG: user-service] rawUser is null or empty. Returning notFound state.");
+
+    const [user, posts] = await Promise.all([userPromise, postsPromise]);
+
+    if (!user || Object.keys(user).length === 0) {
         return { user: null, posts: [] };
     }
-    
-    const user = mapRawUser(rawUser);
-    const posts = mapRawPosts(rawPosts);
-    console.log("[DEBUG: user-service] mappedUser:", user);
-    console.log("[DEBUG: user-service] mappedPosts:", posts);
-    
-    return { user, posts };
+
+    return { user, posts: posts || [] };
 };
 
 /**
@@ -100,17 +78,11 @@ export const fetchUserProfileById = async (userId, options = {}) => {
  * @param {RequestInit} [options={}] - Opciones para la petición fetch.
  * @returns {Promise<Array<UserEntity>>} Una promesa que resuelve con la lista completa de
  * usuarios del dominio.
- *
- * @example
- * ```javascript
- * const users = await fetchAllUsers();
- * const activeUsers = users.filter(u => u.id > 0);
- * ```
  */
 export const fetchAllUsers = async (options = {}) => {
-    const rawUsers = await getAllUsers(options);
+    const users = await getAllUsers(options);
 
-    if (!Array.isArray(rawUsers)) return [];
+    if (!Array.isArray(users)) return [];
 
-    return rawUsers.map(mapRawUser).filter((user) => user && user.id); // Asegura integridad filtrando perfiles rotos.
+    return users.filter((user) => user && user.id);
 };

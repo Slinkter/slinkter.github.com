@@ -5,7 +5,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/myprojectapi02/',
+  base: '/projects/workspace-crm/',
   plugins: [
     react(),
     tailwindcss(),

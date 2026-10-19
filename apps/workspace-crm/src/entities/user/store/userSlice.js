@@ -3,7 +3,7 @@
  * Gestión del estado de Usuarios.
  */
 
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { normalizeText } from "@/shared/lib/utils";
 
 const initialState = {
@@ -75,7 +75,14 @@ export const { resetUserState } = userSlice.actions;
 export const selectCurrentUser = (state) => state.user.currentUser;
 export const selectUserFetchStatus = (state) => state.user.fetchStatus;
 export const selectUserFetchError = (state) => state.user.error;
-export const selectMemoizedUserList = (state) => Object.values(state.user.cachedUsersById || {});
+
+const selectCachedUsersById = (state) => state.user.cachedUsersById;
+
+export const selectMemoizedUserList = createSelector(
+    [selectCachedUsersById],
+    (cachedUsersById) => Object.values(cachedUsersById || {})
+);
+
 export const selectMemoizedCurrentUser = (state) => state.user.currentUser;
 
 export default userSlice.reducer;

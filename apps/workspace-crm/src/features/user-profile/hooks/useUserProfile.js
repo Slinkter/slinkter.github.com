@@ -38,11 +38,11 @@ export const useUserProfile = (userId) => {
     const postError = useSelector(selectPostFetchError);
 
     useEffect(() => {
-        if (userId) {
+        if (userId && user?.id !== Number(userId)) {
             const promise = dispatch(fetchUserAndPosts(userId));
             return () => promise.abort();
         }
-    }, [dispatch, userId]);
+    }, [dispatch, userId, user?.id]);
 
     // Lógica derivada para la UI
     const isLoading = userStatus === "loading" || postStatus === "loading";
