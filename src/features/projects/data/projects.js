@@ -17,66 +17,72 @@
 
 /** @type {ProjectBasic[]} */
 export const projectBasics = [
-    {
-        name: "Project 01 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api01.png",
-        link: "https://slinkter.github.io/myprojectapi01/",
-    },
-    {
-        name: "Project 02 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api02.png",
-        link: "https://slinkter.github.io/myprojectapi02/",
-    },
-    {
-        name: "Project 03 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api03.png",
-        link: "https://slinkter.github.io/myprojectapi03/",
-    },
-    {
-        name: "Project 04 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api04.png",
-        link: "https://slinkter.github.io/myprojectapi04/",
-    },
-    {
-        name: "Project 05 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api05.png",
-        link: "https://slinkter.github.io/myprojectapi05/",
-    },
-    {
-        name: "Project 06 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api06.png",
-        link: "https://slinkter.github.io/myprojectapi06/",
-    },
-    {
-        name: "Project 07 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api07.png",
-        link: "https://slinkter.github.io/myprojectapi07/",
-    },
-    {
-        name: "Project 08 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api08.png",
-        link: "https://slinkter.github.io/myprojectapi08/",
-    },
-    {
-        name: "Project 09 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api09.png",
-        link: "https://slinkter.github.io/myprojectapi09/",
-    },
-    {
-        name: "Project 10 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api10.png",
-        link: "https://slinkter.github.io/myprojectapi10/",
-    },
-    {
-        name: "Project 11 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api11.png",
-        link: "https://slinkter.github.io/myprojectapi11/",
-    },
-    {
-        name: "Project 12 ",
-        image: "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api12.png",
-        link: "https://slinkter.github.io/myprojectapi12/",
-    },
+  {
+    name: "NexCommerce — Serverless E-Commerce & Admin",
+    image:
+      "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api12.png",
+    link: "/projects/nexcommerce/",
+    tags: [
+      "TypeScript",
+      "React 18",
+      "Firebase ACID",
+      "TanStack Query",
+      "Tailwind v4",
+    ],
+  },
+  {
+    name: "GitPulse — GitHub Intelligence & Repo Explorer",
+    image:
+      "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api01.png",
+    link: "/projects/gitpulse/",
+    tags: ["React 18", "TanStack Query v5", "MSW", "Zod", "Tailwind v4"],
+  },
+  {
+    name: "WorkspacePro — Enterprise User & Content CRM",
+    image:
+      "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api02.png",
+    link: "/projects/workspace-crm/",
+    tags: [
+      "React 18",
+      "Redux Toolkit",
+      "Vitest",
+      "Testing Library",
+      "Zod",
+    ],
+  },
+  {
+    name: "FoodRecipe Pro — Culinary Explorer & Checklist",
+    image:
+      "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api09.png",
+    link: "/projects/food-recipe/",
+    tags: [
+      "React 18",
+      "React Router v6",
+      "Context API",
+      "FSD Architecture",
+      "Tailwind",
+    ],
+  },
+  {
+    name: "PokéEngine — High-Performance Pokédex (LRU Cache)",
+    image:
+      "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api07.png",
+    link: "/projects/pokedex/",
+    tags: [
+      "React 18",
+      "Redux Toolkit",
+      "React Router v7",
+      "LRU Cache",
+      "Motion",
+    ],
+  },
+  {
+    name: "CatCloud — React 19 Media Gallery & Cloud Favorites",
+    image:
+      "https://raw.githubusercontent.com/Slinkter/slinkter.github.com/refs/heads/main/src/assets/api11.png",
+    link: "/projects/cat-gallery/",
+    tags: ["React 19", "Vite 7", "Redux Toolkit", "Axios REST", "Zod"],
+  },
 ];
 
 /** @type {ProjectWork[]} */

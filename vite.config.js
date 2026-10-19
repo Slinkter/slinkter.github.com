@@ -8,19 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  plugins: [
-    react({
-      // Babel: remove prop-types from production to shave ~6KB
-      babel: {
-        plugins: [
-          process.env.NODE_ENV === "production" && [
-            "babel-plugin-transform-react-remove-prop-types",
-            { removeImport: true },
-          ],
-        ].filter(Boolean),
-      },
-    }),
-  ],
+  plugins: [react()],
   base: "https://slinkter.github.io",
   resolve: {
     alias: {

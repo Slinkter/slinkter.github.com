@@ -115,7 +115,7 @@ function App() {
 
         {/* Proyectos Web */}
         <Section
-          title="Proyectos Experimentales"
+          title="Proyectos Destacados Fullstack & Frontend"
           bgVariant="dark"
           id="experimental"
         >
@@ -128,13 +128,13 @@ function App() {
               </>
             }
           >
-            {[...projectBasics].reverse().map((item) => (
+            {projectBasics.map((item) => (
               <ProjectCard
                 key={`web-${item.id || item.name}`}
                 projectName={item.name}
                 projectImage={item.image}
                 projectLink={item.link}
-                tags={EXPERIMENTAL_TAGS}
+                tags={item.tags || EXPERIMENTAL_TAGS}
               />
             ))}
           </Suspense>

@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
+    "build": "node scripts/build-all.mjs",
+    "build:root": "vite build",
+    "build:all": "node scripts/build-all.mjs",
+    "lint": "eslint src",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
