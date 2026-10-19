@@ -9,12 +9,12 @@ const rootDir = path.resolve(__dirname, "..");
 const workspaceRoot = path.resolve(rootDir, "..");
 
 const APPS = [
-  { slug: "nexcommerce", originalDir: "myprojectapi12" },
-  { slug: "gitpulse", originalDir: "myprojectapi01" },
-  { slug: "workspace-crm", originalDir: "myprojectapi02" },
-  { slug: "food-recipe", originalDir: "myprojectapi09" },
-  { slug: "pokedex", originalDir: "myprojectapi07" },
-  { slug: "cat-gallery", originalDir: "myprojectapi11" },
+  { slug: "nexcommerce", name: "NexCommerce" },
+  { slug: "gitpulse", name: "GitPulse" },
+  { slug: "workspace-crm", name: "WorkspaceCRM" },
+  { slug: "food-recipe", name: "FoodRecipe" },
+  { slug: "pokedex", name: "PokéEngine" },
+  { slug: "cat-gallery", name: "CatCloud" },
 ];
 
 console.log("==================================================");
@@ -37,39 +37,14 @@ if (!fs.existsSync(projectsDist)) {
 
 // 2. Build each application
 for (let i = 0; i < APPS.length; i++) {
-  const { slug, originalDir } = APPS[i];
+  const { slug, name } = APPS[i];
   const appIndex = i + 2;
-  console.log(`\n📦 [${appIndex}/7] Processing ${slug} (from ${originalDir})...`);
+  console.log(`\n📦 [${appIndex}/7] Processing ${name} (${slug})...`);
 
   const appDir = path.join(rootDir, "apps", slug);
   if (!fs.existsSync(appDir)) {
     console.error(`❌ Error: App directory not found at ${appDir}`);
     process.exit(1);
-  }
-
-  const appNodeModules = path.join(appDir, "node_modules");
-  let hasNodeModules = false;
-  try {
-    hasNodeModules =
-      fs.existsSync(appNodeModules) ||
-      fs.lstatSync(appNodeModules).isSymbolicLink();
-  } catch {
-    hasNodeModules = false;
-  }
-
-  if (!hasNodeModules) {
-    const originalNodeModules = path.join(workspaceRoot, originalDir, "node_modules");
-    if (fs.existsSync(originalNodeModules)) {
-      console.log(`🔗 Symlinking node_modules from ${originalNodeModules}...`);
-      try {
-        fs.symlinkSync(originalNodeModules, appNodeModules, "junction");
-      } catch (err) {
-        console.warn(`⚠️ Symlink creation warning: ${err.message}. Trying standard symlink...`);
-        fs.symlinkSync(originalNodeModules, appNodeModules);
-      }
-    } else {
-      console.warn(`⚠️ Original node_modules not found at ${originalNodeModules}`);
-    }
   }
 
   console.log(`🔨 Building ${slug}...`);
