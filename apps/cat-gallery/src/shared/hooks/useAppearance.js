@@ -7,9 +7,7 @@
 
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-
-const STORAGE_KEY_THEME_APPEARANCE = "theme";
-const STORAGE_KEY_FONT_APPEARANCE = "font";
+import { STORAGE_KEY_THEME, STORAGE_KEY_FONT } from "@config/storageKeys";
 
 const persistToStorage = (key, value) => {
     try {
@@ -35,11 +33,11 @@ export const useAppearance = () => {
 
     useEffect(() => {
         applyThemeToDom(themeMode);
-        persistToStorage(STORAGE_KEY_THEME_APPEARANCE, themeMode);
+        persistToStorage(STORAGE_KEY_THEME, themeMode);
     }, [themeMode]);
 
     useEffect(() => {
         applyFontToDom(fontFamily);
-        persistToStorage(STORAGE_KEY_FONT_APPEARANCE, fontFamily);
+        persistToStorage(STORAGE_KEY_FONT, fontFamily);
     }, [fontFamily]);
 };

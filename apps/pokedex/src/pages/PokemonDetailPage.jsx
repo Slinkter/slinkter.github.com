@@ -33,23 +33,28 @@ const PokemonDetailPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        let isMounted = true;
         const fetchPokemon = async () => {
             setLoading(true);
             setError(null);
             try {
                 const data = await pokemonApi.getPokemonDetails(id);
+                if (!isMounted) return;
                 if (!data || data.id === 0) {
                     setError("Pokémon no encontrado");
                 } else {
                     setPokemon(data);
                 }
             } catch (err) {
-                setError("Error al cargar el Pokémon");
+                if (isMounted) setError("Error al cargar el Pokémon");
             } finally {
-                setLoading(false);
+                if (isMounted) setLoading(false);
             }
         };
         fetchPokemon();
+        return () => {
+            isMounted = false;
+        };
     }, [id]);
 
     const handleBack = () => {

@@ -28,9 +28,10 @@ const StatBar = memo(function StatBar({ name, value, max = 255, index }) {
                 className="flex-1 bg-gray-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden"
             >
                 <motion.div
-                    className={`h-full rounded-full ${getColor()}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${percentage}%` }}
+                    className={`h-full rounded-full origin-left ${getColor()}`}
+                    style={{ width: `${percentage}%` }}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 + index * 0.1, ease: "easeOut" }}
                 />
             </motion.div>
@@ -109,7 +110,6 @@ const PokemonDetail = memo(function PokemonDetail({ pokemon }) {
                             <img
                                 src={spriteUrl}
                                 alt={`${name} Pokémon sprite`}
-                                role="img"
                                 className="w-full h-full object-contain drop-shadow-2xl"
                             />
                         </div>
@@ -137,18 +137,21 @@ const PokemonDetail = memo(function PokemonDetail({ pokemon }) {
                             initial="hidden"
                             animate="visible"
                         >
-                            {types.map((type, index) => (
-                                <motion.span
-                                    key={index}
-                                    variants={typeVariants}
-                                    custom={index}
-                                    className={`px-4 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold capitalize rounded-full text-white shadow-md ${getTypeColor(
-                                        typeof type === "string" ? type : type.type?.name
-                                    )}`}
-                                >
-                                    {typeof type === "string" ? type : type.type?.name}
-                                </motion.span>
-                            ))}
+                            {types.map((type, index) => {
+                                const typeName = typeof type === "string" ? type : type.type?.name || `type-${index}`;
+                                return (
+                                    <motion.span
+                                        key={`${id}-${typeName}`}
+                                        variants={typeVariants}
+                                        custom={index}
+                                        className={`px-4 sm:5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold capitalize rounded-full text-white shadow-md ${getTypeColor(
+                                            typeName
+                                        )}`}
+                                    >
+                                        {typeName}
+                                    </motion.span>
+                                );
+                            })}
                         </motion.div>
                     </div>
                 </div>
@@ -170,14 +173,17 @@ const PokemonDetail = memo(function PokemonDetail({ pokemon }) {
                         Estadísticas
                     </motion.h2>
                     <div className="space-y-1 sm:space-y-2">
-                        {stats.map((stat, index) => (
-                            <StatBar
-                                key={index}
-                                index={index}
-                                name={stat.stat?.name?.replace("-", " ") || stat.name}
-                                value={stat.base_stat || stat.value || 0}
-                            />
-                        ))}
+                        {stats.map((stat, index) => {
+                            const statName = stat.stat?.name?.replace("-", " ") || stat.name || `stat-${index}`;
+                            return (
+                                <StatBar
+                                    key={`${id}-${statName}`}
+                                    index={index}
+                                    name={statName}
+                                    value={stat.base_stat || stat.value || 0}
+                                />
+                            );
+                        })}
                     </div>
                 </motion.div>
             )}

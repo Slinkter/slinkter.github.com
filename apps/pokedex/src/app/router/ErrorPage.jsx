@@ -6,7 +6,7 @@
 import { Link } from "react-router-dom";
 
 const ErrorPage = () => (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col items-center justify-center p-4" role="main">
+    <main className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col items-center justify-center p-4">
         <h1 className="text-6xl font-bold text-red-500 mb-4">404</h1>
         <h2 className="text-xl text-gray-700 dark:text-gray-300 mb-4" id="error-heading">Página no encontrada</h2>
         <Link
@@ -15,7 +15,7 @@ const ErrorPage = () => (
         >
             Volver al inicio
         </Link>
-    </div>
+    </main>
 );
 
 export default ErrorPage;

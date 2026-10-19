@@ -26,4 +26,4 @@ export { default as PokedexHeader } from "./components/PokedexHeader";
 
 // Export state logic and selectors
 export { default as pokemonReducer, fetchPokemons } from "./state/pokemonSlice";
-export { selectProcessedPokemons } from "@/entities/pokemon/model/selectors";
+export { selectProcessedPokemons } from "./state/pokemonSelectors";

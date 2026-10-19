@@ -65,7 +65,7 @@ const DefaultErrorFallback = ({ error, showDetails, onRetry }) => (
         )}
         <button
             onClick={onRetry}
-            className="flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-white transition-all bg-destructive rounded-lg hover:bg-destructive/90 active:scale-95"
+            className="flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-white transition-colors bg-destructive rounded-lg hover:bg-destructive/90 active:scale-95"
         >
             <MdRefresh className="w-4 h-4" />
             Try Again

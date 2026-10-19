@@ -12,10 +12,15 @@ const store = configureStore({
     favorites: favoritesReducer,
     theme: themeReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  middleware: (getDefaultMiddleware) => {
+    const middleware = getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(reduxLogger),
+    });
+    if (!import.meta.env.PROD) {
+      return middleware.concat(reduxLogger);
+    }
+    return middleware;
+  },
 });
 
 export default store;

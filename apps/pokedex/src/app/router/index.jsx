@@ -17,6 +17,7 @@ const router = createHashRouter(
     [
         {
             element: <MainLayout />,
+            errorElement: <ErrorPage />,
             children: [
                 {
                     path: "/",
@@ -30,6 +31,7 @@ const router = createHashRouter(
         },
         {
             element: <DetailLayout />,
+            errorElement: <ErrorPage />,
             children: [
                 {
                     path: "pokemon/:id",
@@ -44,6 +46,7 @@ const router = createHashRouter(
         {
             path: "*",
             element: <ErrorPage />,
+            errorElement: <ErrorPage />,
         },
     ]
 );

@@ -36,7 +36,7 @@ const CatErrorHandler = React.memo(() => {
             <button
                 onClick={handleRetry}
                 aria-label="Retry loading cats"
-                className="px-4 py-2 text-xs font-bold text-white transition-all bg-red-600 rounded-lg hover:bg-red-700 active:scale-95 shadow-md shadow-red-500/20"
+                className="px-4 py-2 text-xs font-bold text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 active:scale-95 shadow-md shadow-red-500/20"
             >
                 Retry
             </button>

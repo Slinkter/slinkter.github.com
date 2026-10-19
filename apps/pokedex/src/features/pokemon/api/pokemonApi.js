@@ -182,7 +182,7 @@ export const pokemonApi = {
         } catch (error) {
             logger.api(API_CONFIG.ENDPOINTS.POKEMON, "ERROR", 0);
             logger.error("API Error fetching pokemons", error?.message || error);
-            return { count: 0, results: [] };
+            throw error;
         }
     },
 
@@ -197,12 +197,6 @@ export const pokemonApi = {
             return cached;
         }
 
-        const seedPokemon = findInSeed(idOrName);
-        if (seedPokemon) {
-            logger.flow("SeedHit", { id: idOrName });
-            return transformPokemonData(seedPokemon);
-        }
-
         try {
             const { data } = await httpClient.get(url);
             const transformed = transformPokemonData(data);
@@ -213,6 +207,11 @@ export const pokemonApi = {
         } catch (error) {
             logger.api(url, "ERROR", 0);
             logger.error("API Error fetching pokemon details", error?.message || error);
+            const seedPokemon = findInSeed(idOrName);
+            if (seedPokemon) {
+                logger.flow("SeedFallback", { id: idOrName });
+                return transformPokemonData(seedPokemon);
+            }
             return {
                 id: 0,
                 name: "Unknown",

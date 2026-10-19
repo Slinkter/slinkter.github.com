@@ -13,7 +13,7 @@ export default defineConfig({
       jsxRuntime: "automatic",
     }),
   ],
-  base: "https://slinkter.github.io/myprojectapi11",
+  base: "/projects/cat-gallery/",
   server: {
     proxy: {
       "/api/cors-proxy": {

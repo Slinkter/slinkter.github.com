@@ -30,7 +30,10 @@ const PokemonList = memo(({ pokemons }) => {
     );
 }, (prevProps, nextProps) => {
     return prevProps.pokemons.length === nextProps.pokemons.length &&
-        prevProps.pokemons.every((p, i) => p.id === nextProps.pokemons[i]?.id);
+        prevProps.pokemons.every((p, i) => 
+            p.id === nextProps.pokemons[i]?.id && 
+            p.favorite === nextProps.pokemons[i]?.favorite
+        );
 });
 
 PokemonList.displayName = "PokemonList";

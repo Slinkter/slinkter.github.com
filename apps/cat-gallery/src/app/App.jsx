@@ -19,7 +19,7 @@ import { motionFeatures } from "@config/motionConfig";
  * @returns {JSX.Element} The main layout.
  */
 const App = () => {
-  usePageTitle("Project API 11 - Cat Gallery");
+  usePageTitle("CatCloud — Infinite Feline Discovery");
   useAppearance();
 
   return (

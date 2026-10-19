@@ -25,7 +25,7 @@ const Select = React.memo(({ value, onChange, options, className = "", ariaLabel
         <select
             value={value}
             onChange={onChange}
-            className="appearance-none block w-full px-4 py-2.5 pr-10 text-sm font-medium transition-all bg-card border border-border rounded-full text-foreground cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-primary/30"
+            className="appearance-none block w-full px-4 py-2.5 pr-10 text-sm font-medium transition-colors bg-card border border-border rounded-full text-foreground cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-primary/30"
             aria-label={ariaLabel}
         >
             {options.map((opt) => (

@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
-  base: "/myprojectapi07",
+  base: "/projects/pokedex/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src")

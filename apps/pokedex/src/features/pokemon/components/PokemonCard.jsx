@@ -73,9 +73,6 @@ const PokemonCard = React.memo(({ id, name, image, types, favorite, index = 0 })
             animate={reducedMotion ? false : "visible"}
             whileHover={reducedMotion ? undefined : "hover"}
             onClick={handleCardClick}
-            onKeyDown={handleKeyDown}
-            role="button"
-            tabIndex={0}
             className="group relative flex flex-col bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl"
             style={{ overflow: "hidden" }}
         >
@@ -138,7 +135,7 @@ const PokemonCard = React.memo(({ id, name, image, types, favorite, index = 0 })
                         }
                         return (
                             <span
-                                key={`${typeName}-${idx}`}
+                                key={`${id}-${typeName}-${idx}`}
                                 className={`px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1.5 text-[10px] sm:text-xs font-bold capitalize rounded-full shadow-sm animate-scale-in ${getTypeClass(typeName)}`}
                                 style={{ animationDelay: `${0.2 + idx * 0.05 + index * 0.05}s` }}
                             >
