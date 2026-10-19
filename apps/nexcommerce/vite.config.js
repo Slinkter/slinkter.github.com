@@ -5,7 +5,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: process.env.VITE_BASE_PATH || (process.env.DEPLOY_TARGET === "gh-pages" ? "/myprojectapi12/" : "/"),
+  base: '/projects/nexcommerce/',
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./src"),

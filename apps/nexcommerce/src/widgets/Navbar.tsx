@@ -26,7 +26,7 @@ import { LoginModal } from "@/features/auth/presentation/LoginModal";
 /**
  * @component NavLogo
  * @description Logo animado de la aplicación con enlace a la página de inicio.
- * Muestra el nombre "MyProjectAPI12".
+ * Muestra el nombre "NexCommerce".
  *
  * @returns {JSX.Element} Elemento Link con el logo y nombre de la marca.
  */
@@ -37,9 +37,9 @@ const NavLogo = () => (
     >
         <div className="flex flex-col">
             <span className="text-lg font-extrabold tracking-tight leading-none text-slate-800 dark:text-slate-100">
-                MyProject
+                Nex
                 <span className="text-primary transition-colors group-hover:text-primary-hover">
-                    API12
+                    Commerce
                 </span>
             </span>
         </div>

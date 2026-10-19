@@ -215,7 +215,7 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
 
               <div>
                 <div className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">
-                  Tipo de Usuario (Rol)
+                  🛠️ Modo Demo Reclutador: Seleccionar Rol (Cliente / Admin)
                 </div>
                 <div className="flex gap-4">
                   <label className="flex-1 flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 cursor-pointer text-sm font-semibold text-slate-700 dark:text-slate-300">

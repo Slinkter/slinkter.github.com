@@ -36,6 +36,16 @@ import {
   Printer
 } from "lucide-react";
 
+const escapeHtml = (str: unknown): string => {
+  if (str == null) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+};
+
 const handlePrintTicket = (order: IOrderDocument) => {
   const printWindow = window.open("", "_blank");
   if (!printWindow) return;
@@ -53,8 +63,8 @@ const handlePrintTicket = (order: IOrderDocument) => {
       <tr>
         <td style="padding: 12px 8px; border-bottom: 1px solid #e2e8f0; vertical-align: middle;">
           <div style="display: flex; align-items: center; gap: 10px;">
-            ${i.thumbnail ? `<img src="${i.thumbnail}" alt="${i.title}" style="width: 44px; height: 44px; object-cover: cover; border-radius: 6px; border: 1px solid #e2e8f0;" />` : `<div style="width: 44px; height: 44px; background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8;">N/A</div>`}
-            <span style="font-weight: 500;">${i.title}</span>
+            ${i.thumbnail ? `<img src="${escapeHtml(i.thumbnail)}" alt="${escapeHtml(i.title)}" style="width: 44px; height: 44px; object-cover: cover; border-radius: 6px; border: 1px solid #e2e8f0;" />` : `<div style="width: 44px; height: 44px; background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8;">N/A</div>`}
+            <span style="font-weight: 500;">${escapeHtml(i.title)}</span>
           </div>
         </td>
         <td style="padding: 12px 8px; border-bottom: 1px solid #e2e8f0; text-align: center; vertical-align: middle;">${i.quantity}</td>
@@ -68,7 +78,7 @@ const handlePrintTicket = (order: IOrderDocument) => {
       (h) => `
       <div style="display: flex; gap: 10px; font-size: 12px; margin-bottom: 8px;">
         <span style="color: #64748b; font-family: monospace;">[${h.timestamp?.toDate ? h.timestamp.toDate().toLocaleDateString("es-ES") : "Reciente"}]</span>
-        <span><strong>${(ORDER_STATUS_LABELS[h.status]?.label || h.status).toUpperCase()}:</strong> ${h.note || "Actualización de estado"} <span style="color: #94a3b8; font-size: 11px;">(${h.updatedBy || "Sistema"})</span></span>
+        <span><strong>${escapeHtml((ORDER_STATUS_LABELS[h.status]?.label || h.status).toUpperCase())}:</strong> ${escapeHtml(h.note || "Actualización de estado")} <span style="color: #94a3b8; font-size: 11px;">(${escapeHtml(h.updatedBy || "Sistema")})</span></span>
       </div>`
     )
     .join("");
@@ -86,7 +96,7 @@ const handlePrintTicket = (order: IOrderDocument) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Comprobante de Pedido - ${order.orderId}</title>
+        <title>Comprobante de Pedido - ${escapeHtml(order.orderId)}</title>
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px; color: #334155; max-width: 700px; margin: auto; line-height: 1.5; }
           h1 { font-size: 24px; margin-bottom: 4px; color: #0f172a; }
@@ -104,21 +114,21 @@ const handlePrintTicket = (order: IOrderDocument) => {
       <body>
         <div class="header">
           <div>
-            <h1>MyProjectAPI12 Store</h1>
+            <h1>NexCommerce Store</h1>
             <p style="font-size: 12px; color: #64748b; margin: 0;">Comprobante Oficial de Compra y Despacho</p>
           </div>
-          <div class="badge">${currentStatusLabel.toUpperCase()}</div>
+          <div class="badge">${escapeHtml(currentStatusLabel.toUpperCase())}</div>
         </div>
         
         <div class="meta-grid">
           <div>
-            <div class="meta-item"><strong>ID de Pedido:</strong> <span style="font-family: monospace;">${order.orderId}</span></div>
-            <div class="meta-item"><strong>Fecha:</strong> ${orderDate}</div>
-            <div class="meta-item"><strong>Cliente:</strong> ${order.email}</div>
+            <div class="meta-item"><strong>ID de Pedido:</strong> <span style="font-family: monospace;">${escapeHtml(order.orderId)}</span></div>
+            <div class="meta-item"><strong>Fecha:</strong> ${escapeHtml(orderDate)}</div>
+            <div class="meta-item"><strong>Cliente:</strong> ${escapeHtml(order.email)}</div>
           </div>
           <div>
-            <div class="meta-item"><strong>Método de Pago:</strong> ${order.paymentMethod.toUpperCase()}</div>
-            <div class="meta-item"><strong>Estimado de Entrega:</strong> <span style="color: #0369a1; font-weight: 600;">${estDeliveryStr}</span></div>
+            <div class="meta-item"><strong>Método de Pago:</strong> ${escapeHtml(order.paymentMethod.toUpperCase())}</div>
+            <div class="meta-item"><strong>Estimado de Entrega:</strong> <span style="color: #0369a1; font-weight: 600;">${escapeHtml(estDeliveryStr)}</span></div>
             <div class="meta-item" style="font-size: 11px; color: #64748b;">(Entrega estándar dentro de 2-3 días hábiles)</div>
           </div>
         </div>
@@ -148,7 +158,7 @@ const handlePrintTicket = (order: IOrderDocument) => {
           </div>
         ` : ""}
         
-        <p style="font-size: 11px; color: #94a3b8; text-align: center; margin-top: 40px; border-top: 1px dashed #e2e8f0; padding-top: 20px;">¡Gracias por tu confianza en MyProjectAPI12! Conserve este comprobante para cualquier aclaración.</p>
+        <p style="font-size: 11px; color: #94a3b8; text-align: center; margin-top: 40px; border-top: 1px dashed #e2e8f0; padding-top: 20px;">¡Gracias por tu confianza en NexCommerce! Conserve este comprobante para cualquier aclaración.</p>
         <script>
           window.onload = function() { window.print(); };
         </script>
