@@ -1,24 +1,103 @@
-# Logs
-logs
+# ============================================================================
+# Dependencies & Package Managers (Monorepo Root + apps/*)
+# ============================================================================
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+.pnpm-store/
+
+# ============================================================================
+# Build Outputs & Caches (Vite, Rollup, TypeScript, Linters)
+# ============================================================================
+dist/
+**/dist/
+dist-ssr/
+build/
+out/
+.vite/
+**/.vite/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+.cache/
+
+# ============================================================================
+# Environment Variables & Secrets (Keep .env.example tracked)
+# ============================================================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ============================================================================
+# Testing & Coverage (Vitest, Playwright, Istanbul)
+# ============================================================================
+coverage/
+**/coverage/
+.nyc_output/
+playwright-report/
+test-results/
+blob-report/
+
+# ============================================================================
+# Firebase & Cloud Emulators
+# ============================================================================
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+pubsub-debug.log*
+
+# ============================================================================
+# Logs & Runtime Data
+# ============================================================================
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
 *.local
 
-# Editor directories and files
+# ============================================================================
+# AI Assistants, Prompts & Internal Agent Metadata (Hide from Recruiters)
+# ============================================================================
+.agent/
+.agents/
+.claude/
+.cursor/
+.windsurf/
+.gemini/
+GEMINI.md
+**/GEMINI.md
+AGENTS.md
+**/AGENTS.md
+CLAUDE.md
+**/CLAUDE.md
+QWEN.md
+**/QWEN.md
+*prompt*.md
+**/*prompt*.md
+*PROMPT*.md
+**/*PROMPT*.md
+ux_audit_report.md
+skills-lock.json
+
+# ============================================================================
+# IDEs, Editors & OS Metadata
+# ============================================================================
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
+**/.DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*~
