@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useScroll } from "motion/react";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/layout/Hero";
@@ -23,6 +23,11 @@ const WorkCard = lazy(() =>
 const ProjectCard = lazy(() =>
   import("@/features/projects").then((mod) => ({ default: mod.ProjectCard })),
 );
+const AppShowcaseModal = lazy(() =>
+  import("@/features/projects").then((mod) => ({
+    default: mod.AppShowcaseModal,
+  })),
+);
 const MessageTracker = lazy(() =>
   import("@/features/contact").then((mod) => ({ default: mod.MessageTracker })),
 );
@@ -34,8 +39,11 @@ import SkeletonWorkCard from "@/components/ui/skeletons/SkeletonWorkCard";
 import SkeletonProjectCard from "@/components/ui/skeletons/SkeletonProjectCard";
 
 const EXPERIMENTAL_TAGS = ["HTML", "CSS", "JS"];
+const visibleProjectWorks = projectWorks.filter((item) => !item.hidden);
 
 function App() {
+  const [selectedApp, setSelectedApp] = useState(null);
+
   useEffect(() => {
     document.title = "LJCR - Portfolio ";
   }, []);
@@ -66,13 +74,13 @@ function App() {
           <Suspense
             fallback={
               <>
-                {["a", "b", "c"].map((id) => (
+                {["a", "b"].map((id) => (
                   <SkeletonWorkCard key={`sk-work-app-${id}`} vertical={true} />
                 ))}
               </>
             }
           >
-            {projectWorks.map((item) => (
+            {visibleProjectWorks.map((item) => (
               <WorkCard
                 key={`work-${item.id || item.name}`}
                 name={item.name}
@@ -108,6 +116,9 @@ function App() {
                 link={item.link}
                 tags={item.tags}
                 vertical={true}
+                onSelect={
+                  item.details ? () => setSelectedApp(item) : undefined
+                }
               />
             ))}
           </Suspense>
@@ -140,6 +151,14 @@ function App() {
           </Suspense>
         </Section>
       </div>
+
+      {/* Modal de Ficha Técnica para Aplicaciones Android */}
+      <Suspense fallback={null}>
+        <AppShowcaseModal
+          app={selectedApp}
+          onClose={() => setSelectedApp(null)}
+        />
+      </Suspense>
 
       {/* New Contact Section */}
       <div id="contact">
