@@ -1,0 +1,51 @@
+/**
+ * @file App.tsx
+ * @description Componente raíz de la aplicación. Configura los proveedores de contexto
+ * (React Query, tema, carrito), el enrutador, las animaciones y el boundary de errores global.
+ */
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { LazyMotion, domAnimation } from "framer-motion";
+
+import { ThemeProvider } from "@/features/theme/application/ThemeContext";
+import { AuthProvider } from "@/features/auth/application/AuthProvider";
+import { CartProvider } from "@/features/cart/application/CartProvider";
+import { queryClient } from "@/app/config/queryClient";
+import Layout from "@/shared/ui/Layout";
+import AppRouter from "@/app/routing/AppRouter";
+import ErrorBoundary from "@/shared/ui/ErrorBoundary";
+
+/**
+ * Componente raíz de la aplicación.
+ * Configura los proveedores de contexto (React Query, tema, carrito),
+ * el enrutador con BrowserRouter, las animaciones con Framer Motion
+ * y el boundary de errores global.
+ *
+ * @returns Elemento JSX de la aplicación completa.
+ */
+const App: React.FC = () => {
+    return (
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider>
+                <AuthProvider>
+                    <CartProvider>
+                        <BrowserRouter basename={import.meta.env.BASE_URL}>
+                            <LazyMotion features={domAnimation}>
+                                <ErrorBoundary>
+                                    <Layout>
+                                        <AppRouter />
+                                    </Layout>
+                                </ErrorBoundary>
+                            </LazyMotion>
+                        </BrowserRouter>
+                    </CartProvider>
+                </AuthProvider>
+            </ThemeProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+    );
+};
+
+export default App;

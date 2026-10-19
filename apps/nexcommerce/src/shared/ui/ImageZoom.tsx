@@ -1,0 +1,204 @@
+import { useState, useRef, useEffect, type MouseEvent } from 'react'
+import { HiOutlineMagnifyingGlassPlus, HiOutlineMagnifyingGlassMinus, HiOutlineArrowPath } from 'react-icons/hi2'
+import { cn } from '@/shared/lib/cn'
+import { useLogLifecycle } from "@/shared/hooks/useLogLifecycle";
+
+/**
+ * @interface IImageZoomProps
+ * @description Propiedades del componente ImageZoom.
+ * @property {string} src - URL de la imagen.
+ * @property {string} alt - Texto alternativo de la imagen.
+ * @property {string} [className] - Clases CSS adicionales.
+ */
+interface IImageZoomProps {
+  src: string
+  alt: string
+  className?: string
+}
+
+/**
+ * @component ImageZoom
+ * @description Componente de zoom interactivo para imágenes.
+ * Permite acercar, alejar, arrastrar y restablecer la vista
+ * con soporte para teclado y controles táctiles.
+ * @param {IImageZoomProps} props - Propiedades del componente.
+ * @returns {JSX.Element} Imagen con controles de zoom.
+ */
+export function ImageZoom({ src, alt, className }: IImageZoomProps) {
+  useLogLifecycle("ImageZoom");
+  const [zoom, setZoom] = useState(1)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+  const isDraggingRef = useRef(false)
+  const dragStart = useRef({ x: 0, y: 0 })
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY < 0) {
+        setZoom((prev) => Math.min(prev + 0.25, 3))
+      } else if (e.deltaY > 0) {
+        setZoom((prev) => Math.max(prev - 0.25, 1))
+      }
+    }
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1 && zoom > 1) {
+        isDraggingRef.current = true
+        setIsDragging(true)
+        dragStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+      }
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDraggingRef.current || zoom <= 1 || e.touches.length !== 1) return
+      const dx = e.touches[0].clientX - dragStart.current.x
+      const dy = e.touches[0].clientY - dragStart.current.y
+      setPosition((prev) => ({
+        x: prev.x + dx,
+        y: prev.y + dy,
+      }))
+      dragStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+    }
+
+    const handleTouchEnd = () => {
+      isDraggingRef.current = false
+      setIsDragging(false)
+    }
+
+    container.addEventListener('wheel', handleWheel, { passive: true })
+    container.addEventListener('touchstart', handleTouchStart, { passive: true })
+    container.addEventListener('touchmove', handleTouchMove, { passive: true })
+    container.addEventListener('touchend', handleTouchEnd, { passive: true })
+    container.addEventListener('touchcancel', handleTouchEnd, { passive: true })
+
+    return () => {
+      container.removeEventListener('wheel', handleWheel)
+      container.removeEventListener('touchstart', handleTouchStart)
+      container.removeEventListener('touchmove', handleTouchMove)
+      container.removeEventListener('touchend', handleTouchEnd)
+      container.removeEventListener('touchcancel', handleTouchEnd)
+    }
+  }, [zoom])
+
+  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+    if (!containerRef.current || zoom <= 1) return
+
+    if (isDragging) {
+      const dx = e.clientX - dragStart.current.x
+      const dy = e.clientY - dragStart.current.y
+      setPosition((prev) => ({
+        x: prev.x + dx,
+        y: prev.y + dy,
+      }))
+      dragStart.current = { x: e.clientX, y: e.clientY }
+      return
+    }
+
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setPosition({ x, y })
+  }
+
+  const handleMouseDown = (e: MouseEvent<HTMLElement>) => {
+    if (zoom <= 1) return
+    setIsDragging(true)
+    dragStart.current = { x: e.clientX, y: e.clientY }
+  }
+
+  const handleMouseUp = () => {
+    setIsDragging(false)
+  }
+
+  const handleMouseLeave = () => {
+    setIsDragging(false)
+  }
+
+  const zoomIn = () => setZoom((prev) => Math.min(prev + 0.5, 3))
+  const zoomOut = () => setZoom((prev) => Math.max(prev - 0.5, 1))
+  const resetZoom = () => {
+    setZoom(1)
+    setPosition({ x: 50, y: 50 })
+  }
+
+  return (
+    <div className={cn('relative group', className)} ref={containerRef}>
+      <button
+        type="button"
+        aria-label="Zoom de imagen. Presiona Enter o Espacio para ampliar, o arrastra con el ratón cuando esté ampliado."
+        className={cn(
+          'block w-full p-0 border-none bg-transparent text-left overflow-hidden cursor-zoom-in rounded-xl focus-visible:ring-2 focus-visible:ring-emerald-500/30 focus-visible:outline-none',
+          zoom > 1 && 'cursor-grab',
+          isDragging && 'cursor-grabbing'
+        )}
+        onMouseMove={handleMouseMove}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            if (zoom > 1) {
+              resetZoom()
+            } else {
+              zoomIn()
+            }
+          }
+        }}
+      >
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-full object-contain transition-transform duration-200"
+          style={{
+            transform: `scale(${zoom}) translate(${(50 - position.x) * (zoom - 1) / 50}%, ${(50 - position.y) * (zoom - 1) / 50}%)`,
+            transformOrigin: `${position.x}% ${position.y}%`,
+          }}
+          draggable={false}
+        />
+      </button>
+
+      {zoom > 1 && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/70 backdrop-blur-sm px-4 py-2 rounded-full">
+          <button
+            type="button"
+            onClick={zoomOut}
+            className="w-10 h-10 flex items-center justify-center text-white hover:bg-white/20 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Alejar"
+          >
+            <HiOutlineMagnifyingGlassMinus className="w-5 h-5" />
+          </button>
+          <span className="text-white text-sm font-medium min-w-[3rem] text-center">
+            {Math.round(zoom * 100)}%
+          </span>
+          <button
+            type="button"
+            onClick={zoomIn}
+            className="w-10 h-10 flex items-center justify-center text-white hover:bg-white/20 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Acercar"
+          >
+            <HiOutlineMagnifyingGlassPlus className="w-5 h-5" />
+          </button>
+          <button
+            type="button"
+            onClick={resetZoom}
+            className="w-10 h-10 flex items-center justify-center text-white hover:bg-white/20 rounded-full transition-colors ml-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Restablecer"
+          >
+            <HiOutlineArrowPath className="w-5 h-5" />
+          </button>
+        </div>
+      )}
+
+      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+        <span className="text-xs text-white/70 bg-black/50 px-2 py-1 rounded-full">
+          {zoom > 1 ? 'Arrastra para mover' : 'Click para zoom'}
+        </span>
+      </div>
+    </div>
+  )
+}

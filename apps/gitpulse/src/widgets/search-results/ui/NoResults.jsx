@@ -1,0 +1,45 @@
+import PropTypes from "prop-types";
+import { motion } from "motion/react";
+import { Search } from "lucide-react";
+import { cn, TAILWIND_STYLE_TOKENS } from "@/shared";
+
+/**
+ * Componente que se muestra cuando una búsqueda en GitHub no retorna ningún resultado.
+ *
+ * 🎓 CONCEPTO JUNIOR: Presentational Components (Componentes de Presentación)
+ * Este componente es puramente de presentación (o tonto): no tiene estado interno ni sabe de dónde 
+ * vienen los datos; solo se encarga de pintar una interfaz bonita basándose en las props que recibe.
+ */
+const NoResults = ({ searchTerm }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 12 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3 }}
+    className={cn(
+      TAILWIND_STYLE_TOKENS.card,
+      "flex flex-col items-center justify-center text-center p-14 max-w-lg mx-auto mt-10 gap-6",
+    )}
+  >
+    <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-bg text-text-mute border border-border">
+      <Search className="w-5 h-5" />
+    </div>
+
+    <div className="space-y-2">
+      <h3 className="text-lg font-heading font-bold text-text">Sin resultados</h3>
+      <p className="text-sm text-text-mute leading-relaxed font-sans">
+        No encontramos nada para{" "}
+        <span className="font-mono text-xs px-1.5 py-0.5 rounded border border-border bg-bg text-accent font-semibold">
+          {searchTerm}
+        </span>
+      </p>
+    </div>
+  </motion.div>
+);
+
+NoResults.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+};
+
+NoResults.displayName = "NoResults";
+
+export default NoResults;

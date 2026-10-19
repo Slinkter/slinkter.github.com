@@ -1,0 +1,82 @@
+/* eslint-disable react-refresh/only-export-components */
+/**
+ * @file ThemeContext.tsx
+ * @description Contexto para la gestión del tema de la aplicación (claro/oscuro).
+ * @architecture Capa de Aplicación - Feature de Tema
+ */
+import {
+    createContext,
+    useState,
+    useEffect,
+    useCallback,
+    useContext,
+    useMemo,
+    ReactNode,
+} from "react";
+import {
+    getStoredTheme,
+    saveTheme,
+    applyThemeToDocument,
+    Theme,
+} from "@/features/theme/infrastructure/themeStorage";
+import { useLogLifecycle } from "@/shared/hooks";
+
+/** Interfaz que define la forma del contexto del tema. */
+interface IThemeContextType {
+    theme: Theme; /** El identificador del tema activo. */
+    toggleDarkMode: () => void; /** Alterna entre los modos 'light' (claro) y 'dark' (oscuro). */
+}
+/** Propiedades del componente ThemeProvider. */
+interface IThemeProviderProps {
+    children: ReactNode; /** Componentes hijos que serán envueltos por el proveedor. */
+}
+
+/** Contexto de React para el tema de la aplicación. */
+const ThemeContext = createContext<IThemeContextType | undefined>(undefined);
+
+export const ThemeProvider = ({ children }: IThemeProviderProps): ReactNode => {
+    useLogLifecycle("ThemeContext");
+    const [theme, setTheme] = useState<Theme>(getStoredTheme);
+
+    // Efecto para aplicar cambios al DOM y persistir en localStorage
+    useEffect(() => {
+        applyThemeToDocument(theme);
+        saveTheme(theme);
+    }, [theme]);
+
+    /**
+     * Alterna entre los modos claro y oscuro.
+     * Cambia el tema actual al opuesto.
+     */
+    const toggleDarkMode = useCallback(() => {
+        setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    }, []);
+
+    const value = useMemo(
+        () => ({ theme, toggleDarkMode }),
+        [theme, toggleDarkMode],
+    );
+
+    return (
+        <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    );
+};
+
+/**
+ * Hook personalizado para acceder al contexto del tema.
+ * Permite leer el tema actual y alternar entre modos claro/oscuro
+ * desde cualquier componente dentro del ThemeProvider.
+ *
+ * @returns {{ theme: Theme, toggleDarkMode: () => void }} Objeto con el tema actual y la función para alternarlo.
+ *
+ * @throws {Error} Lanza un error si se usa fuera de un ThemeProvider.
+ */
+export const useTheme = (): IThemeContextType => {
+    const context = useContext(ThemeContext);
+    if (context === undefined) {
+        throw new Error("useTheme debe usarse dentro de un ThemeProvider");
+    }
+    return context;
+};
+
+export { ThemeContext };

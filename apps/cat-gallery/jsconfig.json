@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@features/*": ["./src/features/*"],
+            "@shared/*": ["./src/shared/*"],
+            "@app/*": ["./src/app/*"],
+            "@widgets/*": ["./src/widgets/*"],
+            "@config/*": ["./src/config/*"]
+        },
+        "jsx": "react-jsx",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["src"]
+}

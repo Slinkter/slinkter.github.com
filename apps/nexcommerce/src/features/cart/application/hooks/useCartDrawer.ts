@@ -1,0 +1,97 @@
+/**
+ * @file useCartDrawer.ts
+ * @description Hook personalizado para gestionar el estado de visibilidad del drawer del carrito.
+ * Proporciona funciones memoizadas para abrir, cerrar y alternar el drawer.
+ * @architecture Application Layer - Custom Hook
+ */
+
+import { useState, useCallback } from "react";
+
+/**
+ * @interface IUseCartDrawerReturn
+ * @description Valor de retorno del hook useCartDrawer.
+ * Contiene el estado de visibilidad y funciones para controlarlo.
+ * 
+ * @property {boolean} isCartOpen - Estado actual de visibilidad del drawer
+ * @property {Function} openCart - Función para abrir el drawer
+ * @property {Function} closeCart - Función para cerrar el drawer
+ * @property {Function} toggleCart - Función para alternar el estado del drawer
+ */
+interface IUseCartDrawerReturn {
+    isCartOpen: boolean;
+    openCart: () => void;
+    closeCart: () => void;
+    toggleCart: () => void;
+}
+
+/**
+ * @function useCartDrawer
+ * @description Hook personalizado para controlar la visibilidad del drawer del carrito.
+ * Gestiona el estado booleano y proporciona funciones memoizadas para manipularlo.
+ * Las funciones están optimizadas con useCallback para evitar recreaciones innecesarias.
+ * @architecture Application Layer - Custom Hook
+ * 
+ * @returns {IUseCartDrawerReturn} Objeto con estado y funciones de control del drawer
+ * 
+ * @example
+ * // Uso en ----> CartProvider
+ * function CartProvider({ children }) {
+ *   const { isCartOpen, openCart, closeCart, toggleCart } = useCartDrawer();
+ *   
+ *   return (
+ *     <CartContext.Provider value={{ isCartOpen, openCart, closeCart, toggleCart }}>
+ *       {children}
+ *       {isCartOpen && <CartDrawer onClose={closeCart} />}
+ *     </CartContext.Provider>
+ *   );
+ * }
+ * 
+ * @example
+ * // Uso en ---->  componente
+ * function CartIcon() {
+ *   const { toggleCart } = useCart();
+ *   
+ *   return (
+ *     <button onClick={toggleCart}>
+ *       🛒 Cart
+ *     </button>
+ *   );
+ * }
+ * 
+ * @example
+ * // Abrir drawer después de agregar producto
+ * function ProductCard({ product }) {
+ *   const { addToCart, openCart } = useCart();
+ *   
+ *   const handleAddToCart = () => {
+ *     addToCart(product, 1);
+ *     openCart(); // Abre automáticamente el drawer
+ *   };
+ *   
+ *   return <button onClick={handleAddToCart}>Add to Cart</button>;
+ * }
+ */
+export const useCartDrawer = (): IUseCartDrawerReturn => {
+    const [isCartOpen, setIsCartOpen] = useState(false);
+
+    /**
+     * Opens the cart drawer so the user can see their cart items.
+     * @returns void
+     */
+    const openCart = useCallback(() => setIsCartOpen(true), []);
+
+    /**
+     * Closes the cart drawer, hiding it from the user.
+     * @returns void
+     */
+    const closeCart = useCallback(() => setIsCartOpen(false), []);
+
+    /**
+     * Toggles the cart drawer open or closed.
+     * If open, closes it. If closed, opens it.
+     * @returns void
+     */
+    const toggleCart = useCallback(() => setIsCartOpen((prev) => !prev), []);
+
+    return { isCartOpen, openCart, closeCart, toggleCart };
+};
