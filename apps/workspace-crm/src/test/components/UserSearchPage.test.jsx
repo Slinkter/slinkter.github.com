@@ -60,7 +60,7 @@ describe("UserSearchPage", () => {
 
     vi.mocked(useUserProfile).mockReturnValue({
         user: { id: 1, username: "JohnDoe", name: "John Doe", email: "j@d.com", company: { name: "JD Corp" }, address: { street: "123 St" }, phone: "123", website: "jd.com" },
-        posts: [{ id: 101, title: "Hello World", body: "Content" }],
+        posts: [{ id: 101, userId: 1, title: "Hello World", body: "Content" }],
         isLoading: false,
         error: null,
         isNotFound: false

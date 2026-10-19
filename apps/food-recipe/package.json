@@ -10,16 +10,19 @@
     "format": "prettier --write \"src/**/*.{js,jsx,json,md}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,json,md}\"",
     "preview": "vite preview",
+    "test": "vitest run",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.30.2",
-    "prop-types": "^15.8.1"
+    "react-router-dom": "^6.30.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.10.0",
+    "@testing-library/react": "^16.3.3",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
@@ -31,9 +34,11 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.26",
     "gh-pages": "^6.3.0",
+    "jsdom": "^29.1.1",
     "postcss": "^8.5.6",
     "prettier": "^3.7.4",
     "tailwindcss": "^3.4.19",
-    "vite": "^5.4.21"
+    "vite": "^5.4.21",
+    "vitest": "^2.1.9"
   }
 }

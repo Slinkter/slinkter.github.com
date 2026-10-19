@@ -73,6 +73,9 @@ const PokemonCard = React.memo(({ id, name, image, types, favorite, index = 0 })
             animate={reducedMotion ? false : "visible"}
             whileHover={reducedMotion ? undefined : "hover"}
             onClick={handleCardClick}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            role="button"
             className="group relative flex flex-col bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl"
             style={{ overflow: "hidden" }}
         >

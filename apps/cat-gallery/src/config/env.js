@@ -1,40 +1,19 @@
 /**
  * @file Application Environment Configuration.
- * @description Centralizes and validates environment variables to avoid
- * scattered `import.meta.env` calls throughout the codebase.
+ * @description Centralizes environment variables with safe defaults for production and demo environments.
  */
 
-/**
- * Validates that critical environment variables are present.
- * Throws an error in development if missing.
- */
-const validateEnv = () => {
-  const required = ["VITE_BASE_URL", "VITE_API_KEY"];
-
-  const missing = required.filter((key) => !import.meta.env[key]);
-
-  if (missing.length > 0) {
-    const message = `[App Config] Missing required environment variables: ${missing.join(
-      ", "
-    )}`;
-    console.error(message);
-    // In strictly typed environments or strict mode, we might want to throw.
-    // throw new Error(message);
-  }
-};
-
-// Run validation
-validateEnv();
+const DEFAULT_BASE_URL = "https://api.thecatapi.com/v1";
 
 /**
  * Global configuration object for the application.
  * @property {object} api - API specific configurations.
  * @property {string} api.baseUrl - The base URL for the API.
- * @property {string} api.apiKey - The authentication key for the API.
+ * @property {string} api.apiKey - The authentication key for the API (optional in public demo mode).
  */
 export const config = {
   api: {
-    baseUrl: import.meta.env.VITE_BASE_URL,
-    apiKey: import.meta.env.VITE_API_KEY,
+    baseUrl: import.meta.env.VITE_BASE_URL || DEFAULT_BASE_URL,
+    apiKey: import.meta.env.VITE_API_KEY || "",
   },
 };
