@@ -13,11 +13,13 @@ node_modules/
 dist/
 **/dist/
 dist-ssr/
+**/dist-ssr/
 build/
 out/
 .vite/
 **/.vite/
 *.tsbuildinfo
+**/*.tsbuildinfo
 .eslintcache
 .stylelintcache
 .cache/
@@ -26,8 +28,11 @@ out/
 # Environment Variables & Secrets (Keep .env.example tracked)
 # ============================================================================
 .env
+**/.env
 .env.*
+**/.env.*
 !.env.example
+!**/.env.example
 *.pem
 *.key
 
@@ -65,12 +70,21 @@ lerna-debug.log*
 # ============================================================================
 # AI Assistants, Prompts & Internal Agent Metadata (Hide from Recruiters)
 # ============================================================================
+.agent
 .agent/
+**/.agent
+**/.agent/
+.agents
 .agents/
+**/.agents/
+.claude
 .claude/
+**/.claude/
 .cursor/
 .windsurf/
+.gemini
 .gemini/
+**/.gemini/
 GEMINI.md
 **/GEMINI.md
 AGENTS.md
@@ -84,6 +98,7 @@ QWEN.md
 *PROMPT*.md
 **/*PROMPT*.md
 ux_audit_report.md
+EXECUTION_REPORT.md
 skills-lock.json
 
 # ============================================================================
