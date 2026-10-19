@@ -1,9 +1,5 @@
-
-
-
 const UserDetailSkeleton = () => (
   <div className="max-w-4xl mx-auto space-y-8 md:space-y-12 py-8 md:py-12 px-4 animate-pulse">
-    {}
     <div className="inline-block">
       <div className="flex items-center gap-2">
         <div className="w-4 h-4 rounded bg-border" />
@@ -11,7 +7,6 @@ const UserDetailSkeleton = () => (
       </div>
     </div>
 
-    {}
     <section className="flex flex-col sm:flex-row gap-8 items-center sm:items-start p-8 border border-border bg-surface rounded-2xl">
       <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full border border-border bg-border/30 flex-shrink-0" />
       <div className="space-y-4 sm:pt-2 w-full flex-1">
@@ -24,10 +19,7 @@ const UserDetailSkeleton = () => (
       </div>
     </section>
 
-    {}
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      
-      {}
       <div className="md:col-span-2 p-8 rounded-2xl border border-border bg-surface flex flex-col justify-between gap-6 min-h-[220px]">
         <div className="flex justify-between items-center">
           <div className="w-12 h-12 rounded-lg bg-border" />
@@ -41,7 +33,6 @@ const UserDetailSkeleton = () => (
         <div className="w-full bg-border/20 h-1.5 rounded-none mt-2" />
       </div>
 
-      {}
       <div className="p-8 rounded-2xl border border-border bg-surface flex flex-col justify-between gap-6">
         <div className="w-10 h-10 rounded-lg bg-border" />
         <div className="space-y-2">
@@ -51,7 +42,6 @@ const UserDetailSkeleton = () => (
         </div>
       </div>
 
-      {}
       <div className="p-8 rounded-2xl border border-border bg-surface flex flex-col justify-between gap-6">
         <div className="w-10 h-10 rounded-lg bg-border" />
         <div className="space-y-2">
@@ -61,7 +51,6 @@ const UserDetailSkeleton = () => (
         </div>
       </div>
 
-      {}
       <div className="p-8 rounded-2xl border border-border bg-surface flex flex-col justify-between gap-6">
         <div className="w-10 h-10 rounded-lg bg-border" />
         <div className="space-y-2">
@@ -71,7 +60,6 @@ const UserDetailSkeleton = () => (
         </div>
       </div>
 
-      {}
       <div className="p-6 rounded-2xl border border-border bg-surface flex flex-col justify-between min-h-[160px]">
         <div className="flex items-center gap-1.5 border-b border-border pb-2.5 w-full">
           <div className="w-2 h-2 rounded-full bg-border/40" />
@@ -84,10 +72,8 @@ const UserDetailSkeleton = () => (
           <div className="h-3 w-40 bg-border rounded opacity-50" />
         </div>
       </div>
-
     </div>
 
-    {}
     <footer className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 pt-8 border-t border-border">
       <div className="h-9 w-32 bg-border rounded-xl opacity-60" />
       <div className="h-9 w-40 bg-border rounded-xl opacity-60" />

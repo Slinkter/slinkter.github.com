@@ -6,6 +6,7 @@ import { useUserDetailFacade } from "@/features/view-user-details";
 import ProfileHeader from "./ui/ProfileHeader";
 import ProfileFooter from "./ui/ProfileFooter";
 import BentoStatsGrid from "./ui/BentoStatsGrid";
+import UserRepositories from "./ui/UserRepositories";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -74,7 +75,7 @@ const UserDetail = () => {
       <motion.div variants={itemVariants} className="inline-block group">
         <Link
           to="/"
-          className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface text-text-mute hover:text-text hover:border-text/25 hover:shadow-sm transition-all text-xs font-semibold cursor-pointer active:scale-95"
+          className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface text-text-mute hover:text-text hover:border-text/25 hover:shadow-sm transition-colors text-xs font-semibold cursor-pointer active:scale-95"
           aria-label="Volver a la búsqueda de usuarios"
         >
           <ArrowLeft
@@ -88,6 +89,7 @@ const UserDetail = () => {
 
       <ProfileHeader user={user} variants={itemVariants} />
       <BentoStatsGrid user={user} variants={itemVariants} />
+      <UserRepositories username={user.username} variants={itemVariants} />
       <ProfileFooter user={user} variants={itemVariants} />
     </motion.div>
   );

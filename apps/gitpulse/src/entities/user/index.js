@@ -4,7 +4,8 @@
 
 export { useUserQuery as useUserSearchQuery } from "./api/useUserQuery";
 export { useUserDetailQuery } from "./api/useUserDetailQuery";
-export { fetchUsersAPI, fetchUserDetailAPI } from "./api/userService";
+export { useUserReposQuery } from "./api/useUserReposQuery";
+export { fetchUsersAPI, fetchUserDetailAPI, fetchUserReposAPI } from "./api/userService";
 export { default as ResultFactory } from "./ui/ResultFactory";
 export { default as UserCard } from "./ui/UserCard";
 export { default as UserDetailSkeleton } from "./ui/UserDetailSkeleton";

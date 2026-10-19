@@ -1,5 +1,3 @@
-
-
 import { motion } from "motion/react";
 import PropTypes from "prop-types";
 import { GitFork, Users, Heart, Code } from "lucide-react";
@@ -7,13 +5,11 @@ import { cn, TAILWIND_STYLE_TOKENS } from "@/shared";
 import AnimatedCounter from "./AnimatedCounter";
 import AccountStatus from "./AccountStatus";
 
-
 const BentoStatsGrid = ({ user, variants }) => {
   const repoPercent = Math.min((user.repos / 100) * 100, 100);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-      {}
       <motion.div
         variants={variants}
         whileHover={{ y: -4, scale: 1.005 }}
@@ -23,7 +19,6 @@ const BentoStatsGrid = ({ user, variants }) => {
           "md:col-span-2 p-6 flex flex-col justify-between gap-5 relative overflow-hidden group/bento",
         )}
       >
-        {}
         <div className="absolute inset-0 bg-linear-to-br from-accent/5 via-transparent to-transparent opacity-40 pointer-events-none" />
 
         <div className="flex items-center justify-between relative z-10">
@@ -31,8 +26,7 @@ const BentoStatsGrid = ({ user, variants }) => {
             <GitFork className="w-5 h-5" />
           </div>
           <span className="font-mono text-[9px] font-bold text-accent bg-accent-soft px-2.5 py-0.5 rounded border border-accent/15 tracking-wider uppercase">
-            REPOSITORIOS 
-
+            REPOSITORIOS
           </span>
         </div>
 
@@ -50,17 +44,16 @@ const BentoStatsGrid = ({ user, variants }) => {
         </div>
 
         <div className="w-full bg-bg h-1.5 rounded-full overflow-hidden mt-1 border border-border relative z-10">
-          {}
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${repoPercent}%` }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            style={{ width: `${repoPercent}%` }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="h-full bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
+            className="h-full origin-left bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
           />
         </div>
       </motion.div>
 
-      {}
       <motion.div
         variants={variants}
         whileHover={{ y: -4, scale: 1.005 }}
@@ -90,7 +83,6 @@ const BentoStatsGrid = ({ user, variants }) => {
         </div>
       </motion.div>
 
-      {}
       <motion.div
         variants={variants}
         whileHover={{ y: -4, scale: 1.005 }}
@@ -120,7 +112,6 @@ const BentoStatsGrid = ({ user, variants }) => {
         </div>
       </motion.div>
 
-      {}
       <motion.div
         variants={variants}
         whileHover={{ y: -4, scale: 1.005 }}
@@ -150,7 +141,6 @@ const BentoStatsGrid = ({ user, variants }) => {
         </div>
       </motion.div>
 
-      {}
       <AccountStatus user={user} variants={variants} />
     </div>
   );

@@ -5,8 +5,8 @@ import { STALE_TIME, GC_TIME } from "@/shared/config/config";
 export const useUserQuery = (searchTerm) => {
   return useQuery({
     queryKey: ["users", searchTerm],
-    queryFn: async () => {
-      return fetchUsersAPI(searchTerm);
+    queryFn: async ({ signal }) => {
+      return fetchUsersAPI(searchTerm, signal);
     },
     enabled: searchTerm.trim().length === 0 || searchTerm.trim().length >= 3,
     staleTime: STALE_TIME,

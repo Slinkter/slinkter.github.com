@@ -16,7 +16,6 @@ const RateLimitPane = ({ message, onRetry }) => {
       role="alert"
       aria-live="assertive"
     >
-      {}
       <div className={cn(TAILWIND_STYLE_TOKENS.card, "md:col-span-2 p-7 flex flex-col justify-between gap-5")}>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">

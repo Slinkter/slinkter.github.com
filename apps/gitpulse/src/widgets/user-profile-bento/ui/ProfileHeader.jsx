@@ -12,7 +12,7 @@ const ProfileHeader = ({ user, variants }) => {
           layoutId={`avatar-${user.username}`}
           src={user.photo}
           alt={`Avatar de ${user.username}`}
-          className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full border border-border object-cover shadow-md transition-all duration-300 z-10 ring-4 ring-accent/10 dark:ring-accent/15"
+          className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full border border-border object-cover shadow-md transition-colors duration-300 z-10 ring-4 ring-accent/10 dark:ring-accent/15"
         />
         <span className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-3.5 h-3.5 bg-emerald-500 border-2 border-surface rounded-full z-20 shadow-sm" />
       </div>

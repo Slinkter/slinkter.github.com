@@ -91,3 +91,36 @@ export const fetchUserDetailAPI = async (login, signal) => {
     throw error;
   }
 };
+
+/**
+ * Obtiene los repositorios públicos destacados más recientes de un usuario.
+ *
+ * @async
+ * @function fetchUserReposAPI
+ * @param {string} username - Nombre de usuario de GitHub.
+ * @param {AbortSignal} [signal] - Señal para abortar la petición.
+ * @returns {Promise<Array<Object>>} Lista de repositorios adaptados.
+ */
+export const fetchUserReposAPI = async (username, signal) => {
+  const url = `${API_BASE_URL}/users/${username}/repos?sort=updated&per_page=6`;
+
+  try {
+    const rawRepos = await apiFetch(url, { signal });
+    if (!Array.isArray(rawRepos)) return [];
+
+    return rawRepos.map((repo) => ({
+      id: repo.id,
+      name: repo.name,
+      description: repo.description || "Sin descripción proporcionada",
+      htmlUrl: repo.html_url,
+      stars: repo.stargazers_count || 0,
+      forks: repo.forks_count || 0,
+      language: repo.language || "Markdown",
+      updatedAt: repo.updated_at,
+    }));
+  } catch (error) {
+    console.error(`Service: fetchUserReposAPI para "${username}" falló:`, error);
+    if (error instanceof ApiError) throw error;
+    return [];
+  }
+};

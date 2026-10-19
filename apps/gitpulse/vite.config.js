@@ -26,10 +26,8 @@ const __dirname = path.dirname(__filename);
 export default defineConfig(() => ({
   plugins: [react(), tailwindcss()],
   
-  // base: "/myprojectapi01/" -> Es vital para Github Pages. 
-  // Le dice a la app que no vive en "tusitio.com/", sino en "tusitio.com/myprojectapi01/". 
-  // Si no se pone, todos los recursos (JS, CSS, imágenes) darán error 404 al publicar.
-  base: "/myprojectapi01/",
+  // base: "/projects/gitpulse/" -> Es vital para el Monorepo en GitHub Pages. 
+  base: "/projects/gitpulse/",
   
   resolve: {
     alias: {

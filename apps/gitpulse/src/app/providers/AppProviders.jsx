@@ -28,7 +28,7 @@ import { queryClient } from "@/shared";
 const AppProviders = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename="/myprojectapi01">
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         {children}
       </BrowserRouter>
       {/* Herramientas de desarrollo para depurar la caché en desarrollo */}

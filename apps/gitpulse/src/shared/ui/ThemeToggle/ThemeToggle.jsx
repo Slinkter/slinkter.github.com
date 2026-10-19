@@ -30,7 +30,6 @@ export const ThemeToggle = ({ theme, toggleTheme }) => {
       aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
       aria-pressed={isDark}
     >
-      {}
       <AnimatePresence mode="wait" initial={false}>
         {isDark ? (
           <motion.div

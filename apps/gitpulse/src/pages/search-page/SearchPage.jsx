@@ -18,7 +18,6 @@ const SearchPage = () => {
 
   return (
     <>
-      {}
       <PageHeader
         isSearching={isLoading}
         searchTerm={searchTerm}

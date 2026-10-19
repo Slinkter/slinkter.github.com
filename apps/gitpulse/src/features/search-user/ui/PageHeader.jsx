@@ -70,7 +70,7 @@ const PageHeader = ({ searchTerm, handleSearch, isSearching }) => {
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, type: "spring", stiffness: 80 }}
+            transition={{ type: "spring", stiffness: 80, damping: 15 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.1]"
           >
             Explora el{" "}

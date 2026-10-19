@@ -85,7 +85,7 @@ UserAvatar.displayName = "UserCard.Avatar";
  * @param {string} [props.variant="default"] - Variante estética de la tarjeta.
  * @returns {React.JSX.Element} Cabecera textual de la tarjeta.
  */
-const UserHeader = ({ username, variant = "default" }) => {
+const UserHeader = ({ username, variant = "default", children }) => {
   const isMinimalLayout = variant === "minimal";
 
   return (
@@ -102,6 +102,7 @@ const UserHeader = ({ username, variant = "default" }) => {
       <p className="font-mono text-[10px] text-text-mute truncate select-all leading-tight opacity-70">
         github.com/{username}
       </p>
+      {children}
     </div>
   );
 };
@@ -109,6 +110,7 @@ const UserHeader = ({ username, variant = "default" }) => {
 UserHeader.propTypes = {
   username: PropTypes.string.isRequired,
   variant: PropTypes.string,
+  children: PropTypes.node,
 };
 
 UserHeader.displayName = "UserCard.Header";

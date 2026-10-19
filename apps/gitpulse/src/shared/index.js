@@ -12,4 +12,5 @@ export { apiFetch } from "./api/apiFetch";
 export { ApiError } from "./api/ApiError";
 export { queryClient } from "./api/queryClient";
 export { TAILWIND_STYLE_TOKENS } from "./styles/theme";
+export { formatJoinDate } from "./utils/formatters";
 
